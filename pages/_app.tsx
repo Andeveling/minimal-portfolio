@@ -1,19 +1,20 @@
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import { Montserrat } from "@next/font/google";
+import localFont from "@next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import cx from "classnames";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
 import { Provider as RWBProvider } from "react-wrap-balancer";
-import cx from "classnames";
-import localFont from "@next/font/local";
-import { Inter } from "@next/font/google";
+import { AnimatePresence, motion } from "framer-motion";
 
 const sfPro = localFont({
   src: "../styles/SF-Pro-Display-Medium.otf",
   variable: "--font-sf",
 });
 
-const inter = Inter({
+const montserrat = Montserrat({
   variable: "--font-inter",
   subsets: ["latin"],
 });
@@ -25,8 +26,10 @@ export default function MyApp({
   return (
     <SessionProvider session={session}>
       <RWBProvider>
-        <div className={cx(sfPro.variable, inter.variable)}>
-          <Component {...pageProps} />
+        <div className={cx(sfPro.variable, montserrat.variable)}>
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} />
+          </AnimatePresence>
         </div>
       </RWBProvider>
       <Analytics />

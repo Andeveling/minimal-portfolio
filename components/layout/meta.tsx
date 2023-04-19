@@ -3,12 +3,13 @@ import Head from "next/head";
 const DOMAIN = "https://precedent.dev";
 
 export default function Meta({
-  title = "Precedent - Building blocks for your Next.js project",
-  description = "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
+  title = "Andres Portfolio",
+  description = "Web developer with 2 years of experience in web-oriented technologies.",
   image = `${DOMAIN}/api/og`,
 }: {
   title?: string;
   description?: string;
+
   image?: string;
 }) {
   return (

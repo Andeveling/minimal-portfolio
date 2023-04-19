@@ -3,7 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname:
+          "/dg84upfsp/image/upload/v1664231394/PORTFOLIO/andres_vbaip0.jpg",
+      },
+    ],
+    domains: ["lh3.googleusercontent.com", "res.cloudinary.com"],
   },
   async redirects() {
     return [

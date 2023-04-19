@@ -33,7 +33,11 @@ module.exports = {
       },
     },
   },
+  daisyui: {
+    themes: ["luxury"],
+  },
   plugins: [
+    require("daisyui"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
