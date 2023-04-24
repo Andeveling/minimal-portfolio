@@ -19,6 +19,7 @@ module.exports = {
         // Tooltip
         "slide-up-fade": "slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-down-fade": "slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "spin-slow": "spin 16s linear infinite",
       },
       keyframes: {
         // Tooltip
@@ -34,7 +35,7 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ["luxury"],
+    themes: ["luxury", "lofi"],
   },
   plugins: [
     require("daisyui"),

@@ -3,7 +3,7 @@ import Head from "next/head";
 const DOMAIN = "https://precedent.dev";
 
 export default function Meta({
-  title = "Andres Portfolio",
+  title = "Andres Parra | Portfolio",
   description = "Web developer with 2 years of experience in web-oriented technologies.",
   image = `${DOMAIN}/api/og`,
 }: {

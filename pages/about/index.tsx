@@ -1,18 +1,30 @@
+import Awards from "@/components/about/Awards";
+import { Education } from "@/components/about/Education";
 import { Experience } from "@/components/about/Experience";
+import Intro from "@/components/about/Intro";
+import { Skills } from "@/components/about/Skills";
+import { Test } from "@/components/about/Test";
 import WebVitals from "@/components/home/web-vitals";
 import Layout from "@/components/layout";
-import { DEPLOY_URL, FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
+import { DEPLOY_URL } from "@/lib/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Balancer from "react-wrap-balancer";
+
+const meta = {
+  title: "About me | Andres Parra",
+  description:
+    'I am a frontend and backend developer with 2 years of experience in HTML, CSS, React, Node, and more. I am passionate about creating clean, intuitive, and scalable applications that solve real-world problems. In my current role, I lead the development of a full-stack web app that increased customer engagement by 90%. I am also a team player with excellent communication skills and a passion for learning. Let is work together to bring your ideas to life!"',
+};
 
 export default function About() {
   return (
-    <Layout>
+    <Layout meta={meta}>
+      <Test/>
       <motion.div
         initial="hidden"
         whileInView="show"
         animate="show"
+        className="container max-w-6xl"
         viewport={{ once: true }}
         variants={{
           hidden: {},
@@ -23,41 +35,13 @@ export default function About() {
           },
         }}
       >
-        <motion.div
-          className="flex justify-center rounded-full"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          <Image
-            src="https://res.cloudinary.com/dg84upfsp/image/upload/v1664231394/PORTFOLIO/andres_vbaip0.jpg"
-            width={200}
-            height={200}
-            alt="Profile Photo"
-          />
-        </motion.div>
-        <motion.h1
-          className="w-full text-center font-display text-9xl font-extrabold  tracking-[-0.02em] drop-shadow-sm md:text-9xl md:leading-[7rem]"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          <Balancer>Code for fun!</Balancer>
-        </motion.h1>
-
-        <motion.p
-          className="mt-6 text-center text-gray-500 md:text-xl"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          <Balancer>
-            I am a highly motivated and enthusiastic individual with a passion
-            for web development. With (2) two years of experience in the
-            industry, I have gained a solid foundation in both front-end and
-            back-end technologies. I am a team player and have excellent
-            communication and problem-solving skills. I am constantly seeking
-            new challenges to grow and improve my skills as a developer.
-          </Balancer>
-        </motion.p>
-
+        <Intro />
+        <Skills />
         <Experience />
+        <Education />
+        <Awards />
 
-        {/* <div className="my-10 grid w-full max-w-screen-xl animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
+        {/*   <div className="my-10 grid w-full max-w-screen-xl animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
           {features.map(({ title, description, demo, large }) => (
             <Card
               key={title}
