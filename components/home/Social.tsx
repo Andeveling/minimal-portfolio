@@ -17,7 +17,7 @@ export const Social = () => {
       {socialLinks.map((item) => (
         <motion.a
           key={item.href}
-          className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+          className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:text-amber-300 "
           whileTap={{ scale: 0.9 }}
           whileHover="hover"
           variants={buttonVariants}

@@ -38,7 +38,7 @@ export const ProjectList = ({projects}:{projects:ProjectT[]}) => {
               className="group relative h-[375px] w-[375px] transform  bg-primary transition duration-500 ease-in-out hover:-translate-y-2  sm:w-[600px]"
               variants={item}
             >
-              <CustomLink href={`/work/${project.id}`}>
+              <CustomLink href={`/projects/${project.id}`}>
                 <div className="relative h-full">
                   <div>
                     <span className="absolute inset-0 m-auto  flex h-48 w-48 items-center justify-center rounded-full border-4 border-base-300 p-1 text-base-300 group-hover:opacity-0">

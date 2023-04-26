@@ -17,48 +17,12 @@ const item: Variants = {
   show: { opacity: 1 },
 };
 
-export const Skills = () => {
-  return (
-    <section className="mt-12">
-      <motion.h2
-        className=" w-full text-center text-8xl font-bold"
-        variants={FADE_DOWN_ANIMATION_VARIANTS}
-      >
-        Skills
-      </motion.h2>
-      <motion.p
-        className="mt-6 text-center text-primary md:text-2xl"
-        variants={FADE_DOWN_ANIMATION_VARIANTS}
-      >
-        <Balancer>
-          My main area of expertise has been front-end development with a strong
-          foundation in backend development using JavaScript technologies, but I
-          prefer to use BaaS platforms like Firebase or Headless CMS platforms
-          like Strapi.
-        </Balancer>
-      </motion.p>
-      <motion.ul
-        className="container mt-10 flex flex-wrap justify-center gap-10"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {skillsSet.frontend.map(({ name, svg, id, level }) => (
-          <Skill key={id} name={name} svg={svg} level={level} />
-        ))}
-        {skillsSet.backend.map(({ name, svg, id, level }) => (
-          <Skill key={id} name={name} svg={svg} level={level} />
-        ))}
-      </motion.ul>
-    </section>
-  );
-};
-
+type LevelSkill = 0 | 1 | 2 | 3;
 type SkillT = {
   id: string;
   name: string;
   svg: any;
-  level: 0 | 1 | 2 | 3;
+  level: LevelSkill;
 };
 type SkillsSetT = {
   collaborativeWork: SkillT[];
@@ -69,43 +33,67 @@ type SkillsSetT = {
   soon: SkillT[];
 };
 
-const PointsLevel = ({ level }: { level: number }) => {
-  switch (level) {
-    case 1:
-      return (
-        <center className="mb-1 flex space-x-1">
-          <span className={`h-3 w-3 rounded-full bg-gray-700`} />
-          <span className={`h-3 w-3 rounded-full bg-gray-300`} />
-          <span className={`h-3 w-3 rounded-full bg-gray-300`} />
-        </center>
-      );
-    case 2:
-      return (
-        <center className="mb-1 flex space-x-1">
-          <span className={`h-3 w-3 rounded-full bg-gray-700`} />
-          <span className={`h-3 w-3 rounded-full bg-gray-700`} />
-          <span className={`h-3 w-3 rounded-full bg-gray-300`} />
-        </center>
-      );
-    case 3:
-      return (
-        <center className="mb-1 flex space-x-1">
-          <span className={`h-3 w-3 rounded-full bg-gray-700`} />
-          <span className={`h-3 w-3 rounded-full bg-gray-700`} />
-          <span className={`h-3 w-3 rounded-full bg-gray-700`} />
-        </center>
-      );
-    default:
-      return (
-        <center className="mb-1 flex space-x-1">
-          <span className={`h-3 w-3 bg-gray-500`} />
-          <span className={`h-3 w-3 bg-gray-500`} />
-          <span className={`h-3 w-3 bg-gray-500`} />
-        </center>
-      );
-  }
+export const Skills = () => {
+  return (
+    <section>
+            <div className="md:flex-row flex-col my-4 mx-auto  flex w-full max-w-7xl flex-wrap  justify-between py-4 text-base">
+        <div className="flex flex-row items-center gap-2">
+          <PointsLevel level={3} />
+          <span className="text-gray-500">Confirmed</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <PointsLevel level={2} />
+          <span className="text-gray-500">Intermediate</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <PointsLevel level={1} />
+          <span className="text-gray-500">Novice</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <PointsLevel level={0} />
+          <span className="text-gray-500">Interesting</span>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-center gap-5">
+        <SkillsTypeMap skills={skillsSet.languages} title="Languages" />
+        <SkillsTypeMap skills={skillsSet.frontend} title="Front-end" />
+        <SkillsTypeMap
+          skills={skillsSet.collaborativeWork}
+          title="Collaborative Working"
+        />
+        <SkillsTypeMap skills={skillsSet.tools} title="Tools" />
+        <SkillsTypeMap skills={skillsSet.backend} title="Back-end" />
+        <SkillsTypeMap skills={skillsSet.soon} title="Soon" />
+      </div>
+    </section>
+  );
 };
-
+const SkillsTypeMap = ({
+  title,
+  skills,
+}: {
+  title: string;
+  skills: SkillT[];
+}) => {
+  return (
+    <motion.div className="container relative mt-10 min-h-[400px] w-96 border py-4 text-3xl shadow-sm"
+      initial={{ y: 160 }} whileInView={{ y: 10 }} transition={{ duration: 0.8, type: "spring" }}>
+      <center className="absolute -top-6  w-full text-center flex justify-center ">
+        <h3 className="bg-black text-white w-fit p-2 px-4">{title}</h3>
+      </center>
+      <motion.ul
+        className=" mt-10 flex flex-wrap justify-center gap-10"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {skills.map(({ name, svg, id, level }) => (
+          <Skill key={id} name={name} svg={svg} level={level} />
+        ))}
+      </motion.ul>
+    </motion.div>
+  );
+};
 const Skill = ({ name, svg, level }: Omit<SkillT, "id">) => {
   return (
     <motion.li
@@ -119,6 +107,39 @@ const Skill = ({ name, svg, level }: Omit<SkillT, "id">) => {
   );
 };
 
+const PointsLevel = ({ level }: { level: LevelSkill }) => {
+  const levels = {
+    0: (
+      <div className="mb-1 flex space-x-1">
+        <span className={`h-3 w-3 bg-gray-300 rounded-full`} />
+        <span className={`h-3 w-3 bg-gray-300 rounded-full`} />
+        <span className={`h-3 w-3 bg-gray-300 rounded-full`} />
+      </div>
+    ),
+    1: (
+      <div className="mb-1 flex space-x-1">
+        <span className={`h-3 w-3 rounded-full bg-gray-700`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-300`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-300`} />
+      </div>
+    ),
+    2: (
+      <div className="mb-1 flex space-x-1">
+        <span className={`h-3 w-3 rounded-full bg-gray-700`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-700`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-300`} />
+      </div>
+    ),
+    3: (
+      <div className="mb-1 flex space-x-1">
+        <span className={`h-3 w-3 rounded-full bg-gray-700`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-700`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-700`} />
+      </div>
+    ),
+  };
+  return levels[level];
+};
 const skillsSet: SkillsSetT = {
   collaborativeWork: [
     {
@@ -240,7 +261,7 @@ const skillsSet: SkillsSetT = {
   ],
   languages: [
     {
-      id: "F01",
+      id: "1",
       name: "HTML5",
       svg: (
         <svg
@@ -271,7 +292,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "F02",
+      id: "2",
       name: "CSS3",
       svg: (
         <svg
@@ -303,7 +324,7 @@ const skillsSet: SkillsSetT = {
     },
 
     {
-      id: "F03",
+      id: "3",
       name: "JavaScript",
       svg: (
         <svg
@@ -348,7 +369,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "F04",
+      id: "4",
       name: "Typescript",
       svg: (
         <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -369,6 +390,53 @@ const skillsSet: SkillsSetT = {
         </svg>
       ),
       level: 3,
+    },
+    {
+      id: "5",
+      name: "Dart",
+      svg: (
+        <svg
+          fill="#000000"
+          viewBox="0 0 32 32"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <title>dart</title>{" "}
+            <path d="M22.039 6.149c-1.122-1.118-2.258-2.221-3.419-3.298-0.327-0.355-0.794-0.577-1.313-0.577-0.008 0-0.015 0-0.023 0h0.001c-0.401 0.039-0.769 0.125-1.117 0.253l0.031-0.010-7.26 3.63zM6.995 6.995v14.709c-0.010 0.083-0.016 0.179-0.016 0.276 0 0.622 0.243 1.188 0.639 1.607l-0.001-0.001 6.142 6.141h10.649v-5.32zM6.148 6.147s6.306-3.151 9.458-4.728c0.496-0.25 1.080-0.396 1.699-0.396 0.052 0 0.105 0.001 0.157 0.003l-0.007-0c0.806 0.159 1.513 0.504 2.101 0.99l-0.008-0.006 11.429 11.43v12.216h-5.32v5.32h-12.414l-11.231-11.231c-0.595-0.612-0.968-1.443-0.985-2.362l-0-0.003c0.051-0.511 0.191-0.978 0.405-1.402l-0.010 0.023z" />{" "}
+          </g>
+        </svg>
+      ),
+      level: 1,
+    },
+    {
+      id: "6",
+      name: "C♯",
+      svg: (
+        <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path
+              d="M9.5 5V10M11.5 5V10M8 6.5H13M8 8.5H13M8 10L7.59787 10.2011C7.20469 10.3977 6.77114 10.5 6.33156 10.5C4.76773 10.5 3.5 9.23227 3.5 7.66844V7.33156C3.5 5.76773 4.76773 4.5 6.33156 4.5C6.77114 4.5 7.20469 4.60235 7.59787 4.79894L8 5M1.5 10.5V4.5L7.5 1L13.5 4.5V10.5L7.5 14L1.5 10.5Z"
+              stroke="#000000"
+            />{" "}
+          </g>
+        </svg>
+      ),
+      level: 1,
     },
   ],
   frontend: [
@@ -447,6 +515,31 @@ const skillsSet: SkillsSetT = {
         </svg>
       ),
       level: 3,
+    },
+    {
+      id: "F08",
+      name: "Flutter",
+      svg: (
+        <svg
+          fill="#000000"
+          viewBox="0 0 32 32"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <title>dart</title>{" "}
+            <path d="M22.039 6.149c-1.122-1.118-2.258-2.221-3.419-3.298-0.327-0.355-0.794-0.577-1.313-0.577-0.008 0-0.015 0-0.023 0h0.001c-0.401 0.039-0.769 0.125-1.117 0.253l0.031-0.010-7.26 3.63zM6.995 6.995v14.709c-0.010 0.083-0.016 0.179-0.016 0.276 0 0.622 0.243 1.188 0.639 1.607l-0.001-0.001 6.142 6.141h10.649v-5.32zM6.148 6.147s6.306-3.151 9.458-4.728c0.496-0.25 1.080-0.396 1.699-0.396 0.052 0 0.105 0.001 0.157 0.003l-0.007-0c0.806 0.159 1.513 0.504 2.101 0.99l-0.008-0.006 11.429 11.43v12.216h-5.32v5.32h-12.414l-11.231-11.231c-0.595-0.612-0.968-1.443-0.985-2.362l-0-0.003c0.051-0.511 0.191-0.978 0.405-1.402l-0.010 0.023z" />{" "}
+          </g>
+        </svg>
+      ),
+      level: 1,
     },
     {
       id: "UI01",
@@ -596,7 +689,7 @@ const skillsSet: SkillsSetT = {
           </g>
         </svg>
       ),
-      level: 3,
+      level: 2,
     },
     {
       id: "B03",
@@ -663,7 +756,7 @@ const skillsSet: SkillsSetT = {
           </g>
         </svg>
       ),
-      level: 3,
+      level: 2,
     },
     {
       id: "B06",
@@ -924,7 +1017,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS06",
+      id: "TOOLS07",
       name: "Ubuntu",
       svg: (
         <svg
@@ -1040,6 +1133,30 @@ const skillsSet: SkillsSetT = {
                 fill="#333333"
               ></path>
             </g>
+          </g>
+        </svg>
+      ),
+      level: 0,
+    },
+    {
+      id: "4",
+      name: "React Native",
+      svg: (
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#000000"
+        >
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <title>react</title>
+            <rect width="24" height="24" fill="none"></rect>
+            <path d="M12,10.11A1.87,1.87,0,1,1,10.13,12,1.88,1.88,0,0,1,12,10.11M7.37,20c.63.38,2-.2,3.6-1.7a24.22,24.22,0,0,1-1.51-1.9A22.7,22.7,0,0,1,7.06,16c-.51,2.14-.32,3.61.31,4m.71-5.74-.29-.51a7.91,7.91,0,0,0-.29.86c.27.06.57.11.88.16l-.3-.51m6.54-.76.81-1.5-.81-1.5c-.3-.53-.62-1-.91-1.47C13.17,9,12.6,9,12,9s-1.17,0-1.71,0c-.29.47-.61.94-.91,1.47L8.57,12l.81,1.5c.3.53.62,1,.91,1.47.54,0,1.11,0,1.71,0s1.17,0,1.71,0c.29-.47.61-.94.91-1.47M12,6.78c-.19.22-.39.45-.59.72h1.18c-.2-.27-.4-.5-.59-.72m0,10.44c.19-.22.39-.45.59-.72H11.41c.2.27.4.5.59.72M16.62,4c-.62-.38-2,.2-3.59,1.7a24.22,24.22,0,0,1,1.51,1.9,22.7,22.7,0,0,1,2.4.36c.51-2.14.32-3.61-.32-4m-.7,5.74.29.51a7.91,7.91,0,0,0,.29-.86c-.27-.06-.57-.11-.88-.16l.3.51m1.45-7c1.47.84,1.63,3.05,1,5.63,2.54.75,4.37,2,4.37,3.68s-1.83,2.93-4.37,3.68c.62,2.58.46,4.79-1,5.63s-3.45-.12-5.37-1.95c-1.92,1.83-3.91,2.79-5.38,1.95s-1.62-3-1-5.63c-2.54-.75-4.37-2-4.37-3.68S3.08,9.07,5.62,8.32c-.62-2.58-.46-4.79,1-5.63s3.46.12,5.38,1.95c1.92-1.83,3.91-2.79,5.37-1.95M17.08,12A22.51,22.51,0,0,1,18,14.26c2.1-.63,3.28-1.53,3.28-2.26S20.07,10.37,18,9.74A22.51,22.51,0,0,1,17.08,12M6.92,12A22.51,22.51,0,0,1,6,9.74c-2.1.63-3.28,1.53-3.28,2.26S3.93,13.63,6,14.26A22.51,22.51,0,0,1,6.92,12m9,2.26-.3.51c.31,0,.61-.1.88-.16a7.91,7.91,0,0,0-.29-.86l-.29.51M13,18.3c1.59,1.5,3,2.08,3.59,1.7s.83-1.82.32-4a22.7,22.7,0,0,1-2.4.36A24.22,24.22,0,0,1,13,18.3M8.08,9.74l.3-.51c-.31,0-.61.1-.88.16a7.91,7.91,0,0,0,.29.86l.29-.51M11,5.7C9.38,4.2,8,3.62,7.37,4s-.82,1.82-.31,4a22.7,22.7,0,0,1,2.4-.36A24.22,24.22,0,0,1,11,5.7Z"></path>
           </g>
         </svg>
       ),

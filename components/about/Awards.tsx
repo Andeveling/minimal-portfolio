@@ -23,21 +23,11 @@ export default function Awards() {
         Awards
       </motion.h2>
 
-      <div className="grid grid-cols-2 items-center justify-center">
-        <div className="flex  justify-center">
-          <motion.div
-            variants={itemVariants}
-            initial="start"
-            animate="end"
-            onAnimationComplete={(variant) => {
-              if (variant === "end") {
-                itemVariants.start.scale = 0.8;
-                itemVariants.end.scale = 1;
-              }
-            }}
-          >
+      <div className="grid grid-cols-1 items-center justify-center md:grid-cols-2">
+        <div className="flex w-full justify-center">
+          <span className="w-80">
             <AwardSVG />
-          </motion.div>
+          </span>
         </div>
         <Award />
       </div>
@@ -47,7 +37,7 @@ export default function Awards() {
 
 const Award = () => {
   return (
-    <div>
+    <div className=" text-center md:text-left">
       <h3 className="text-3xl font-bold capitalize">Gentleman Programming</h3>
       <p className=" font-medium capitalize">
         Effort Recognition Hackathon
@@ -71,7 +61,7 @@ const AwardSVG = () => (
   <svg
     viewBox="0 0 512 512"
     xmlns="http://www.w3.org/2000/svg"
-    className="h-auto w-[66%] max-w-[66vmin] origin-center fill-current"
+    className="h-auto origin-center fill-current"
   >
     <g id="SVGRepo_bgCarrier" strokeWidth={0} />
     <g

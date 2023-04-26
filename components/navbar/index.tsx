@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Social } from "../home/Social";
 import { Audiowide } from "@next/font/google";
 import useScroll from "@/lib/hooks/use-scroll";
+import { MAIL_TO } from "@/lib/constants";
 
 const MotionLink = motion(Link);
 
@@ -46,11 +47,9 @@ export const Navbar = () => {
         <CustomLink href="/blog" title="BLOG" />
       </div>
       <div className="flex items-center justify-center">
-        <div className="mr-2 h-4 w-4 rounded-full border border-black bg-transparent" />
-        <Link className={`text-2xl font-thin ${scrolled } `} href={"/"}>
-          <strong>ANDRES PARRA </strong>
-        </Link>
-        <div className="ml-2 h-4 w-4 rounded-full bg-black" />
+        <strong className="text-primary hover:text-amber-200">
+          <a href={MAIL_TO}>OPEN TO WORK!</a>
+        </strong>
       </div>
       <Social />
     </nav>

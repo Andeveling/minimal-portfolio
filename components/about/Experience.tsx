@@ -2,6 +2,7 @@ import { useScroll, motion } from "framer-motion";
 import { useRef } from "react";
 import { LiIcon } from "./LiIcon";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
+import Balancer from "react-wrap-balancer";
 
 export const Experience = () => {
   const ref = useRef(null);
@@ -12,17 +13,17 @@ export const Experience = () => {
   return (
     <section className="mt-12">
       <motion.h2
-        className=" mb-8 w-full text-center text-8xl font-bold"
+        className="mb-8 w-full text-center text-6xl font-bold md:text-8xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
         Experience
       </motion.h2>
 
       <div className="relative mx-auto w-[100%]" ref={ref}>
-        <motion.div
+        {/* <motion.div
           className="absolute left-9 top-2 h-full w-[4px] origin-top bg-primary"
           style={{ scaleY: scrollYProgress }}
-        />
+        /> */}
         <ul className="ml-4 flex w-full flex-col items-start justify-between gap-8">
           <Details
             position={"Software Engineer"}

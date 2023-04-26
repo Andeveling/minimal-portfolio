@@ -15,9 +15,10 @@ export type MetaData = {
 type LayoutProps = {
   meta?: MetaData;
   children: ReactNode;
+  footer?: boolean
 };
 
-export default function Layout({ meta, children }: LayoutProps) {
+export default function Layout({ meta, footer,children }: LayoutProps) {
   const { data: session, status } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
@@ -37,7 +38,7 @@ export default function Layout({ meta, children }: LayoutProps) {
       <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
         {children}
       </main>
-      <Footer />
+      {footer && <Footer />}
     </>
   );
 }

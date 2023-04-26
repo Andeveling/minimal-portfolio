@@ -1,23 +1,12 @@
-import Card from "@/components/home/card";
 import Layout from "@/components/layout";
+import { FADE_DOWN_ANIMATION_VARIANTS, FADE_UP_ANIMATION_VARIANTS } from "@/lib/constants";
+import { motion, useScroll } from "framer-motion";
 import Balancer from "react-wrap-balancer";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
-import { DEPLOY_URL, FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 
-import WebVitals from "@/components/home/web-vitals";
-
-import Image from "next/image";
-import { Social } from "@/components/home/Social";
-import { ArrowLeft } from "lucide-react";
 import { HireMe } from "@/components/shared/hireMe";
 import { useRef } from "react";
 
 export default function Home() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center start"],
-  });
   return (
     <>
       <Layout>
@@ -26,7 +15,6 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           animate="show"
-          ref={ref}
           viewport={{ once: true }}
           variants={{
             hidden: {},
@@ -38,9 +26,14 @@ export default function Home() {
           }}
         >
           <motion.div
-            className="fixed -top-1/2 z-10 h-[80vh] w-[80vh] rounded-full border-2 border-primary bg-transparent"
-            style={{ translateY: scrollYProgress }}
+            className="fixed -top-1/2 z-10 h-[80vh] w-[80vh] rounded-full border-2 border-primary bg-transparent "
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
           />
+
+          <div className="fixed bottom-10 right-10 ">
+            <p>DIGITAL WEB PORTFOLIO | 2023</p>
+            <p>Build with ♡ by Andres Parra</p>
+          </div>
 
           {/* <motion.a
           variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -55,19 +48,28 @@ export default function Home() {
           </p>
         </motion.a> */}
 
-          <div className="text-center">
-            <motion.h1
-              className="w-full text-center font-display text-9xl font-extrabold  tracking-[-0.03em] drop-shadow-sm md:text-9xl md:leading-[7rem]"
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
-            >
-              <Balancer>Portfolio Web Developer</Balancer>
-            </motion.h1>
-            <motion.h2
+          <div className="max-w-7xl text-center">
+            <motion.p
               className="w-full p-2 font-display text-2xl font-thin tracking-[-0.02em]  drop-shadow-sm md:text-3xl md:leading-[3rem]"
               variants={FADE_DOWN_ANIMATION_VARIANTS}
             >
-              <Balancer>Javascript Developer | 2023</Balancer>
-            </motion.h2>
+              <Balancer>Hi, I am</Balancer>
+            </motion.p>
+            <motion.h1
+              className="w-full text-center font-display text-7xl font-extrabold tracking-[-0.03em] drop-shadow-sm md:text-9xl md:leading-[7rem]"
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+            >
+              <Balancer>ANDRES PARRA</Balancer>
+            </motion.h1>
+            <motion.p
+              className="w-full p-2 font-display text-2xl font-thin tracking-[-0.02em]  drop-shadow-sm md:text-3xl md:leading-[3rem]"
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+            >
+              <Balancer>
+                I am a highly motivated and enthusiastic individual with a
+                passion for web development and this is my portfolio.
+              </Balancer>
+            </motion.p>
           </div>
 
           {/* <motion.p
@@ -98,7 +100,7 @@ export default function Home() {
           />
         ))}
       </div> */}
-
+       
         <HireMe />
       </Layout>
     </>

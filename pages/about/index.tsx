@@ -1,5 +1,6 @@
 import Awards from "@/components/about/Awards";
 import { Education } from "@/components/about/Education";
+import { ExpAndEduContainer } from "@/components/about/ExpAndEduContainer";
 import { Experience } from "@/components/about/Experience";
 import Intro from "@/components/about/Intro";
 import { Skills } from "@/components/about/Skills";
@@ -18,13 +19,13 @@ const meta = {
 
 export default function About() {
   return (
-    <Layout meta={meta}>
-      <Test/>
+    <Layout meta={meta} footer>
+      {/* <Test/> */}
       <motion.div
         initial="hidden"
         whileInView="show"
         animate="show"
-        className="container max-w-6xl"
+        className="container"
         viewport={{ once: true }}
         variants={{
           hidden: {},
@@ -36,28 +37,12 @@ export default function About() {
         }}
       >
         <Intro />
-        <Skills />
-        <Experience />
-        <Education />
+        <Skills/>
+        <ExpAndEduContainer/>
+       
         <Awards />
 
-        {/*   <div className="my-10 grid w-full max-w-screen-xl animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-          {features.map(({ title, description, demo, large }) => (
-            <Card
-              key={title}
-              title={title}
-              description={description}
-              demo={
-                title === "Beautiful, reusable components" ? (
-                  <ComponentGrid />
-                ) : (
-                  demo
-                )
-              }
-              large={large}
-            />
-          ))}
-        </div> */}
+ 
       </motion.div>
     </Layout>
   );

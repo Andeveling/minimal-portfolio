@@ -18,18 +18,18 @@ export const Education = () => {
         Education
       </motion.h2>
 
-      <div className="relative mx-auto w-[100%]" ref={ref}>
-        <motion.div
+      <div className="w-full" ref={ref}>
+        {/* <motion.div
           className="absolute left-9 top-2 h-full w-[4px] origin-top bg-primary"
           style={{ scaleY: scrollYProgress }}
-        />
+        /> */}
         <ul className="ml-4 flex w-full flex-col items-start justify-between gap-8">
           <Details
             degree="Full Stack Developer"
-            universityLink={"www.arqustik.com"}
+            universityLink={"www.soyhenry.com"}
             time={"2022-2022"}
             address={"Buenos Aires, Argentina"}
-            degreeDescription="Major in PERN Stack (PostgreSQL | Express | React | Node) for development of Single Page Applications. "
+            degreeDescription="Major in PERN Stack (PostgreSQL | Express | React | Node) for development of SPA (Single Page Applications.)"
             university={"Henry BootCamp"}
           />
           <Details
