@@ -37,7 +37,7 @@ export const Education = () => {
             universityLink={"https://platzi.com/"}
             time={"2020-Present"}
             address={"Bogota, Colombia"}
-            degreeDescription="Continuously learning and improving skills as a web developer to keep up with the latest frontend market trends."
+            degreeDescription="Where I start over and continue to continually learn and improve skills as a web developer to keep up with the latest frontend market trends."
             university={"Platzi"}
           />
           <Details

@@ -1,12 +1,15 @@
 import { ProjectList } from "@/components/Projects/ProjectList";
 import Layout from "@/components/layout";
+import fs from 'fs'
 
 import {
   FADE_DOWN_ANIMATION_VARIANTS,
   FADE_UP_ANIMATION_VARIANTS,
 } from "@/lib/constants";
 import { motion } from "framer-motion";
-import { GetStaticPaths } from "next";
+import { ProjectT } from "models/Project.types";
+import { GetStaticPaths, GetStaticProps } from "next";
+import path from "path";
 import Balancer from "react-wrap-balancer";
 import useSWR from "swr";
 
@@ -18,14 +21,23 @@ const meta = {
 };
 
 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const filePath = path.join(process.cwd(), "json");
+  const projectsDataJson = fs.readFileSync(filePath + "/projects.json", "utf8");
+  const data: ProjectT[] = JSON.parse(projectsDataJson);
+  return {
+    props: {
+      projects: data,
+    },
+  };
+};
 
-const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
-export default function Projects() {
-  const { data, error } = useSWR("/api/works", fetcher);
- 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+
+
+
+
+export default function Projects({ projects }: { projects: ProjectT[] }) {
   return (
     <Layout meta={meta}>
       <motion.div
@@ -51,14 +63,14 @@ export default function Projects() {
         </motion.h1>
         <motion.p
           variants={FADE_UP_ANIMATION_VARIANTS}
-          className="mt-6 text-center text-xl text-primary md:text-2xl"
+          className="mt-6 text-xl text-center text-primary md:text-2xl"
         >
           My latest web projects and see how we can help bring your ideas to
           life.
         </motion.p>
         {/* <Works /> */}
       </motion.div>
-      <ProjectList projects={data} />
+      <ProjectList projects={projects} />
       {/* <Circle /> */}
     </Layout>
   );
