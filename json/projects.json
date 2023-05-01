@@ -276,7 +276,7 @@
     "repository": "https://github.com/Andeveling/PokemonAppBootCamp",
     "deploy": "",
     "role": "Design and development",
-    "contribution": "",
+    "contribution": "Design and development",
     "isAWork": false
   },
   {
@@ -299,11 +299,17 @@
         }
       ]
     },
+
     "tech": ["Next", "SWR", "Tailwind CSS"],
+    "features": [
+      "Services",
+      "About",
+      "Contact"
+    ],
     "repository": "https://github.com/Andeveling/portafolio-marcela",
     "deploy": "",
-    "role": "Design and development of static page",
-    "contribution": "",
+    "role": "Design and development",
+    "contribution": "Design and development",
     "isAWork": false
   },
   {
@@ -339,7 +345,7 @@
     "repository": "https://github.com/Andeveling/addintech-front",
     "deploy": "",
     "role": "Design and development",
-    "contribution": "",
+    "contribution": "Design and development",
     "isAWork": false
   }
 ]
