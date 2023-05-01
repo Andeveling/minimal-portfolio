@@ -44,7 +44,7 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
 
   return (
     <Layout key={project.id} meta={meta} footer>
-      <BackButton />
+      
       <motion.div
         className="container flex flex-col items-center justify-center w-full h-full px-5 mt-12 text-xl md:text-2xl xl:px-0"
         initial="hidden"

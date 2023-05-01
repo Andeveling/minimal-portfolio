@@ -23,6 +23,25 @@ export const DEPLOY_URL =
 
 export const MAIL_TO = "mailto:andeveling@gmail.com";
 
+export const PublicRoutes = [
+  {
+    id: "1",
+    title: "Home",
+    route: "/",
+  },
+  {
+    id: "2",
+    title: "About",
+    route: "/about",
+  },
+  {
+    id: "3",
+    title: "Projects",
+    route: "/projects",
+  },
+];
+
+
 export const SOCIAL_LINKS = [
   {
     id: "1",

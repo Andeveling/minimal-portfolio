@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useDimensions } from "@/lib/hooks/use-dimensions";
 import { MenuToggle } from "./MenuToggle";
 import { Navigation } from "./Navigation";
+import { ScrollToTop } from "../shared/ScrollToTop";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -39,12 +40,13 @@ export const MobileMenu = () => {
       className="absolute top-0 bottom-0 left-0 z-50"
     >
       <motion.div
-        className="absolute top-0 bottom-0 left-0 flex flex-col gap-4 bg-black w-96"
+        className="absolute top-0 bottom-0 left-0 flex flex-col gap-4 bg-black w-80"
         variants={sidebar}
       />
       
       <Navigation />
       <MenuToggle toggle={() => toggleOpen()} />
+      <ScrollToTop/>
     </motion.nav>
   );
 };

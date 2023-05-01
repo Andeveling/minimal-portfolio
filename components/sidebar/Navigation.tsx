@@ -1,6 +1,9 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
+import { PublicRoutes } from "@/lib/constants";
+import Link from "next/link";
+import AnimateLogo from "../navbar/animateLogo";
 
 const variants = {
   open: {
@@ -12,11 +15,9 @@ const variants = {
 };
 
 export const Navigation = () => (
-  <motion.ul variants={variants} className='absolute w-56 p-6 mt-12'>
-    {itemIds.map((i) => (
-      <MenuItem i={i} key={i} />
+  <motion.ul variants={variants} className="absolute w-56 p-6 mt-12">
+    {PublicRoutes.map((link) => (
+      <MenuItem key={link.id} href={link.route} title={link.title} />
     ))}
   </motion.ul>
 );
-
-const itemIds = [0, 1, 2, 3, 4];

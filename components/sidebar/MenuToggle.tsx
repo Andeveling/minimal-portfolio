@@ -16,7 +16,7 @@ const Path = (
 );
 
 export const MenuToggle = ({ toggle }: { toggle: () => void }): JSX.Element => (
-  <button onClick={toggle} className="absolute z-50 bg-transparent cursor-pointer w-14 h-14 top-4 left-[26px]">
+  <button aria-label="Open Mobile Menu" onClick={toggle} className="absolute z-50 bg-transparent cursor-pointer w-14 h-14 top-4 left-[26px]">
     <svg width="28" height="28" viewBox="0 0 23 23">
       <Path
         variants={{

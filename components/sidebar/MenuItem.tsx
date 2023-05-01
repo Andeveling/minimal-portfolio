@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 const variants = {
   open: {
@@ -17,20 +18,48 @@ const variants = {
   },
 };
 
-const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
+type MenuItemProps = {
+  
+  href: string;
+  title: string;
+};
 
-export const MenuItem = ({ i }: { i: number }): JSX.Element => {
-  const style = { border: `2px solid ${colors[i]}` };
+export const MenuItem = ({  href, title }: MenuItemProps): JSX.Element => {
   return (
     <motion.li
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       className="flex items-center mb-5 cursor-pointer"
-      >
-          
-      <div className="w-10 h-10 mr-5" style={style} />
-      <div className="w-48 h-5 rounded" style={style} />
+    >
+      <CustomMobileLink title={title} href={href} />
+
+
     </motion.li>
+  );
+};
+
+type CustomMobileLinkProps = {
+  href: string;
+  title: string;
+  className?: string;
+};
+
+const CustomMobileLink = ({
+  href,
+  title,
+  className = "",
+}: CustomMobileLinkProps) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(href);
+  };
+  return (
+    <button
+      onClick={handleClick}
+      className={`${className} group relative text-white`}
+    >
+      {title}
+    </button>
   );
 };

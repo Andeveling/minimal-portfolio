@@ -28,7 +28,7 @@ export const Experience = () => {
           <ExperienceDetails
             position={"Independent Freelancer"}
             company={"Freelance"}
-            companyLink={""}
+            companyLink={"/"}
             time={"2021-Present"}
             address={"Cali, Colombia"}
             work={

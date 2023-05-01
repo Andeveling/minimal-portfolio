@@ -51,7 +51,7 @@ export const ProjectList = ({ projects }: { projects: ProjectT[] }) => {
                 </div>
 
                 
-                <div className="h-full p-1 transition-all transform translate-y-0 opacity-0 group-hover:translate-y-10 group-hover:opacity-100 group-hover:z-40">
+                <div className="h-full p-1 transition-all transform translate-y-0 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:z-40">
                   <div className="absolute inset-0 overflow-hidden">
                     <Image
                       className="object-cover h-full"
@@ -60,8 +60,8 @@ export const ProjectList = ({ projects }: { projects: ProjectT[] }) => {
                       height={650}
                       alt={`${project.imagesUrl.desktop[0].title} image`}
                     />
-                    <div className="absolute bottom-0 flex items-center w-full h-20 py-2 text-center bg-black bg-opacity-95 text-base-300">
-                      <div className="w-full px-4 mt-2 space-x-2">
+                    <div className="absolute bottom-0 flex items-center w-full h-20 py-2 text-center bg-black bg-opacity-95">
+                      <div className="w-full px-4 space-x-2">
                         {project.tech.map((item, i) => (
                           <span
                             key={item + i}
