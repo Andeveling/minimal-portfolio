@@ -3,6 +3,11 @@ export type ImagesCollectionT = {
   title: string;
   url: string;
 };
+
+export type ImagesUrl = {
+  mobile: ImagesCollectionT[];
+  desktop: ImagesCollectionT[];
+};
 export type WorkData = {
   client: string;
   date: string;
@@ -17,10 +22,8 @@ export type ProjectT = {
   title: string;
   subtitle: string;
   description: string;
-  imageUrl: string;
-  imagesUrl: ImagesCollectionT[];
+  imagesUrl: ImagesUrl;
   repository: string;
-
   deploy: string;
   role: string;
   tech: string[];

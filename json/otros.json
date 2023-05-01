@@ -1,0 +1,252 @@
+[
+  {
+    "id": "3",
+    "title": "Add In Tech App",
+    "subtitle": "CRUD - App full stack",
+    "description": "I designed and developed a simple full-stack SPA as a technical test, which required a CRUD functionality. The application includes a product listing as a catalog and an admin panel with CRUD functions to manage the products.",
+    "imageUrl": "https://res.cloudinary.com/dg84upfsp/image/upload/v1671401089/addintech/Screenshot_2_szg8ud.jpg",
+    "imagesUrl": [
+      {
+        "id": "1",
+        "title": "Products list",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1671401089/addintech/Screenshot_2_szg8ud.jpg"
+      }
+    ],
+    "tech": [
+      "ReactJs",
+      "Redux-Toolkit",
+      "NextUI",
+      "ExpressJs",
+      "NodeJs",
+      "Mongoose",
+      "MongoDB"
+    ],
+    "features": [
+      "Landing Page",
+      "Login/Register",
+      "Mailing",
+      "Product listing",
+      "Filters and sorting",
+      "Search",
+      "User panel",
+      "Shopping cart",
+      "Payment gateway with order system",
+      "Favorites",
+      "Admin panel (CRUD system)",
+      "Reviews"
+    ],
+    "repository": "https://github.com/Andeveling/addintech-front",
+    "deploy": "",
+    "role": "Design and development",
+    "contribution": "",
+    "isAWork": false
+  },
+
+
+
+  {
+    "id": "7",
+    "title": "Weather App",
+    "subtitle": "Basic CRUD with local state management.",
+    "description": "Designing and developing a straightforward app that consumes an API, this application allows users to view weather information.",
+    "imageUrl": "https://res.cloudinary.com/dg84upfsp/image/upload/v1664233159/PORTFOLIO/Screenshot_2_jxfaeu.jpg",
+    "imagesUrl": [
+      {
+        "id": "1",
+        "title": "Search by cities",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1664233159/PORTFOLIO/Screenshot_2_jxfaeu.jpg"
+      },
+      {
+        "id": "2",
+        "title": "Details of city",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1664233321/PORTFOLIO/Screenshot_3_lqskqy.jpg"
+      }
+    ],
+    "tech": ["ReactJs", "CSS"],
+    "features": [
+      "Landing Page",
+      "Login/Register",
+      "Mailing",
+      "Product listing",
+      "Filters and sorting",
+      "Search",
+      "User panel",
+      "Shopping cart",
+      "Payment gateway with order system",
+      "Favorites",
+      "Admin panel (CRUD system)",
+      "Reviews"
+    ],
+    "repository": "https://github.com/Andeveling/WeatherApp.git",
+    "deploy": "",
+    "role": "Design and development",
+    "contribution": "",
+    "isAWork": false
+  },
+  {
+    "id": "8",
+    "title": "Books CRUD",
+    "subtitle": "CRUD based in Node Js y Express Js",
+    "description": "I developed a basic CRUD using Node.js and Express.js, with data persistence in a .JSON file using Node.js fs, and using EJS as the template engine.",
+    "imageUrl": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665245797/book/Screenshot_1_sd8pmx.jpg",
+    "imagesUrl": [
+      {
+        "id": "1",
+        "title": "See books",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665245797/book/Screenshot_1_sd8pmx.jpg"
+      },
+      {
+        "id": "2",
+        "title": "Create Books",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665245797/book/Screenshot_7_kdonmp.jpg"
+      }
+    ],
+    "tech": ["Html", "CSS", "Node Js", "Express Js", "Bootstrap", "Ejs"],
+    "features": [
+      "Landing Page",
+      "Login/Register",
+      "Mailing",
+      "Product listing",
+      "Filters and sorting",
+      "Search",
+      "User panel",
+      "Shopping cart",
+      "Payment gateway with order system",
+      "Favorites",
+      "Admin panel (CRUD system)",
+      "Reviews"
+    ],
+    "repository": "https://github.com/Andeveling/books",
+    "deploy": "",
+    "role": "Design and development",
+    "contribution": "My contribution was to create the backend using a template engine like EJS for the interface, where I learned about the concept of server-side rendering (SSR).",
+    "isAWork": false
+  },
+  {
+    "id": "9",
+    "title": "To Do App",
+    "subtitle": "An app where we can add tasks to be done, mark them as complete, and delete them.",
+    "description": "Design and development of a simple task management app.",
+    "imageUrl": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665247621/todoapp/Screenshot_1_aa9ze0.jpg",
+    "imagesUrl": [
+      {
+        "id": "1",
+        "title": "Task list",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665247621/todoapp/Screenshot_1_aa9ze0.jpg"
+      },
+      {
+        "id": "2",
+        "title": "Create Task",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665247621/todoapp/Screenshot_3_h420fu.jpg"
+      },
+      {
+        "id": "3",
+        "title": "Filtering of tasks",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665247621/todoapp/Screenshot_2_f3cuwe.jpg"
+      }
+    ],
+    "tech": ["Html", "CSS", "ReactJs"],
+    "features": [
+      "Landing Page",
+      "Login/Register",
+      "Mailing",
+      "Product listing",
+      "Filters and sorting",
+      "Search",
+      "User panel",
+      "Shopping cart",
+      "Payment gateway with order system",
+      "Favorites",
+      "Admin panel (CRUD system)",
+      "Reviews"
+    ],
+    "repository": "https://github.com/Andeveling/todo-list",
+    "deploy": "",
+    "role": "Development",
+    "contribution": "In this project, I learned how to use React Context and React Portal, their different uses and utilities.",
+    "isAWork": false
+  },
+  {
+    "id": "10",
+    "title": "Portfolio",
+    "subtitle": "Portfolio make with html y css",
+    "description": "Design and development of simple web",
+    "imageUrl": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665189624/Photo/Screenshot_1_o8pm5w.jpg",
+    "imagesUrl": [
+      {
+        "id": "1",
+        "title": "",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665189624/Photo/Screenshot_1_o8pm5w.jpg"
+      }
+    ],
+    "tech": ["Html", "CSS"],
+    "features": [
+      "Landing Page",
+      "Login/Register",
+      "Mailing",
+      "Product listing",
+      "Filters and sorting",
+      "Search",
+      "User panel",
+      "Shopping cart",
+      "Payment gateway with order system",
+      "Favorites",
+      "Admin panel (CRUD system)",
+      "Reviews"
+    ],
+    "repository": "https://github.com/Andeveling/Andeveling.github.io",
+    "deploy": "https://andeveling.github.io/",
+    "role": "Layout with html y css",
+    "contribution": "During this small project, I had the opportunity to learn important concepts such as responsive design and the implementation of CSS Grid.",
+    "isAWork": false
+  },
+  {
+    "id": "11",
+    "title": "Bata-bit",
+    "subtitle": "Layout html and css",
+    "description": "Based on a web page design, I created the layout using HTML and CSS.",
+    "imageUrl": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665190068/Photo/Screenshot_5_hsg5ek.jpg",
+    "imagesUrl": [
+      {
+        "id": "1",
+        "title": "",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665190068/Photo/Screenshot_3_movpwe.jpg "
+      },
+      {
+        "id": "2",
+        "title": "",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665190068/Photo/Screenshot_4_civiol.jpg"
+      },
+      {
+        "id": "3",
+        "title": "",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665190068/Photo/Screenshot_5_hsg5ek.jpg"
+      },
+      {
+        "id": "4",
+        "title": "",
+        "url": "https://res.cloudinary.com/dg84upfsp/image/upload/v1665190156/Photo/Screenshot_6_kts5qz.jpg"
+      }
+    ],
+    "tech": ["Html", "CSS"],
+    "features": [
+      "Landing Page",
+      "Login/Register",
+      "Mailing",
+      "Product listing",
+      "Filters and sorting",
+      "Search",
+      "User panel",
+      "Shopping cart",
+      "Payment gateway with order system",
+      "Favorites",
+      "Admin panel (CRUD system)",
+      "Reviews"
+    ],
+    "repository": "https://github.com/Andeveling/Bata-Bit",
+    "deploy": "",
+    "role": "Layout with HTML y CSS",
+    "contribution": "Based on a web page design, I created the layout using HTML and CSS.",
+    "isAWork": false
+  }
+]

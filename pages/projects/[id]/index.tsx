@@ -1,15 +1,15 @@
 import Layout, { MetaData } from "@/components/layout";
+import { BackButton } from "@/components/shared/backButton";
 import {
   FADE_DOWN_ANIMATION_VARIANTS,
   FADE_UP_ANIMATION_VARIANTS,
 } from "@/lib/constants";
 import { motion } from "framer-motion";
-import { GetStaticPaths, GetStaticProps } from "next";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import path from "path";
 import fs from "fs";
 import { ProjectT } from "models/Project.types";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Image from "next/image";
+import path from "path";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const filePath = path.join(process.cwd(), "json");
@@ -38,11 +38,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export default function ProjectPage({ project }: { project: ProjectT }) {
   const meta: MetaData = {
-    title: project.title,
+    title: `Project | ${project.title}`,
     description: project.description,
   };
+
   return (
     <Layout key={project.id} meta={meta} footer>
+      <BackButton />
       <motion.div
         className="container flex flex-col items-center justify-center w-full h-full px-5 mt-12 text-xl md:text-2xl xl:px-0"
         initial="hidden"
@@ -65,13 +67,13 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
           {project.id}
         </motion.div>
         <motion.h1
-          className="mt-8 text-5xl font-medium text-center md:text-8xl"
+          className="mt-8 text-5xl text-center md:text-8xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
           {project.title}
         </motion.h1>
         <motion.h4
-          className="mt-2 text-2xl font-medium text-center text-base-300 md:text-4xl"
+          className="mt-2 text-2xl font-thin text-center text-gray-400 md:text-4xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
           {project.subtitle}
@@ -80,28 +82,32 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
           className="mt-8 flex w-[60%]"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
-          <div className="grid items-center justify-end flex-grow h-20 card ">
-            <a
-              role="button"
-              className="text-xl btn-ghost btn text-primary md:text-2xl"
-              href={project.deploy}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Deploy
-            </a>
-          </div>
-          <div className="divider divider-horizontal" />
-          <div className="grid items-center justify-start flex-grow h-20 card ">
-            <a
-              role="button"
-              className="text-xl btn-ghost btn text-primary md:text-2xl"
-              href={project.repository}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Repository
-            </a>
+          <div className="flex flex-row items-center justify-center flex-grow h-20 grid-cols-3 font-bold card ">
+            {project.deploy && (
+              <>
+                <a
+                  className="text-xl text-primary hover:text-info md:text-2xl"
+                  href={project.deploy}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Deploy
+                </a>
+                {project.deploy && project.repository && (
+                  <div className="divider divider-horizontal" />
+                )}
+              </>
+            )}
+            {project.repository && (
+              <a
+                className="text-xl text-primary hover:text-info md:text-2xl"
+                href={project.repository}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Repository
+              </a>
+            )}
           </div>
         </motion.div>
 
@@ -117,39 +123,59 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
         >
           {project.contribution}
         </motion.p>
-        <div className="flex flex-wrap items-center justify-center mt-4 space-x-4">
-          <p className="font-medium">Build with:</p>
-          {project.tech.map((item) => (
-            <span key={item} className="badge badge-lg">
-              {item}
-            </span>
-          ))}
-        </div>
+
+        <motion.div
+          className="grid grid-cols-2 gap-4"
+          variants={FADE_DOWN_ANIMATION_VARIANTS}
+        >
+          <div className="flex flex-col flex-wrap justify-start p-2 border rounded-md">
+            <p className="mb-2 font-medium text-center">Technologies</p>
+            <ul className="flex flex-wrap justify-center gap-2 min-h-14">
+              {project.tech.map((item, i) => (
+                <li key={i} className="badge badge-lg">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col flex-wrap justify-start p-2 border rounded-md">
+            <p className="mb-2 font-medium text-center">Features</p>
+            <ul className="flex flex-wrap justify-center gap-2 h-fit">
+              {project.features.map((item, i) => (
+                <li key={i} className="badge badge-lg">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* Client data */}
         {project.isAWork && project.workData ? (
           <motion.div
-            className="grid justify-center w-full grid-cols-4 gap-8 py-16"
+            className="grid justify-center w-full grid-cols-2 gap-8 py-8 mt-10 sm:grid-cols-4 group"
             variants={FADE_UP_ANIMATION_VARIANTS}
           >
             <div>
-              <p className="font-medium">Client</p>
+              <p className="mb-2 font-medium border-b-4 w-fit">Client</p>
               <p>{project.workData.client}</p>
               <div className="divider lg:divider-horizontal" />
             </div>
 
             <div>
-              <p className="font-medium">Roles</p>
-              {project.workData.roles.map((item) => (
-                <p key={item}>{item}</p>
+              <p className="mb-2 font-medium border-b-4 w-fit">Roles</p>
+              {project.workData.roles.map((item,i) => (
+                <p key={i}>{item}</p>
               ))}
             </div>
 
             <div>
-              <p className="font-medium">Industries</p>
+              <p className="mb-2 font-medium border-b-4 w-fit">Industries</p>
               <p>{project.workData.industries}</p>
             </div>
 
             <div>
-              <p className="font-medium">Date</p>
+              <p className="mb-2 font-medium border-b-4 w-fit">Date</p>
               <p>{project.workData.date}</p>
             </div>
           </motion.div>
@@ -157,57 +183,32 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
           <></>
         )}
 
-        <motion.div
-          className="w-full mt-10 border shadow-md mockup-window bg-base-300"
-          variants={FADE_UP_ANIMATION_VARIANTS}
-        >
-          <Image
-            className="w-full h-full"
-            src={project.imageUrl}
-            width={1500}
-            height={750}
-            alt="photo"
-          />
-        </motion.div>
-
-        <div>
-          <div>
-            <p className="font-medium">Features</p>
-            <ul className="flex gap-2">
-              {project.features.map((item) => (
-                <li key={item} className="badge badge-md">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p>Challenges</p>
-            <ul>
-              <li>Landing Page</li>
-              <li>Login/Register</li>
-              <li>Mailing</li>
-              <li>Product listing</li>
-              <li>Filters and sorting</li>
-              <li>Search</li>
-              <li>User panel</li>
-              <li>Shopping cart</li>
-              <li>Payment gateway with order system</li>
-              <li>Favorites</li>
-              <li>Admin Panel (CRUD)</li>
-              <li>Reviews system</li>
-            </ul>
-          </div>
-        </div>
+        {project.imagesUrl.desktop.map((image) => (
+          <motion.div
+            key={image.id}
+            className="w-full mt-10 border shadow-md mockup-window bg-base-300"
+            initial={{ y: 160 }}
+            whileInView={{ y: 10 }}
+            transition={{ duration: 0.8, type: "spring" }}
+          >
+            <Image
+              className="w-full h-full"
+              src={image.url}
+              width={1500}
+              height={750}
+              alt="photo"
+            />
+          </motion.div>
+        ))}
 
         {/* Features is a Work */}
 
-        {project.isAWork && (
-          <>
-            <div className="grid grid-cols-2 mt-16 ">
+        {project.isAWork ? (
+          <section className="mt-10">
+            <div className="grid grid-cols-1 mt-16 xs:grid-cols-2">
               <div className="self-center">
                 <motion.h4
-                  className="text-6xl font-medium rotate-2 md:text-8xl"
+                  className="text-6xl font-thin rotate-2 md:text-8xl"
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
                 >
                   Problem
@@ -219,68 +220,52 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
                   {project.workData.problem}
                 </motion.p>
               </div>
-              <motion.div
-                className="self-center mockup-phone"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1, rotate: 10 }}
-                transition={{
-                  duration: 0.3,
-                  ease: [0, 0.71, 0.2, 1.01],
-                  scale: {
-                    type: "spring",
-                    damping: 5,
-                    stiffness: 100,
-                    restDelta: 0.001,
-                  },
-                }}
+            
+               <motion.div
+                className="self-center mt-10 md:mt-2 mockup-phone"
+                initial={{ x: 260 }}
+                whileInView={{ x: 10, rotate: 10 }}
+                transition={{ duration: 1, type: "spring" }}
               >
-                <div className="camera "></div>
+                <div className="camera " />
                 <div className="display ">
-                  <div className="phone-1 artboard artboard-demo ">
+                  <div className="relative bg-black phone-3 artboard artboard-demo">
                     <Image
-                      className="object-fill"
-                      src="https://res.cloudinary.com/dg84upfsp/image/upload/v1675561334/Screenshot_3_ykbr0a.jpg"
-                      width={1500}
-                      height={750}
-                      alt="photo"
+                      className="absolute object-cover top-10"
+                      src={project.imagesUrl.mobile[0].url}
+                      width={1185}
+                      height={2566}
+                      alt={project.imagesUrl.mobile[0].title}
                     />
                   </div>
                 </div>
               </motion.div>
+             
             </div>
 
-            <div className="grid grid-cols-2 mt-16 ">
+            <div className="grid grid-cols-1 mt-16 xs:grid-cols-2">
               <motion.div
                 className="self-center mockup-phone"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1, rotate: -10 }}
-                transition={{
-                  duration: 0.3,
-                  ease: [0, 0.71, 0.2, 1.01],
-                  scale: {
-                    type: "spring",
-                    damping: 5,
-                    stiffness: 100,
-                    restDelta: 0.001,
-                  },
-                }}
+                initial={{ x: -260 }}
+                whileInView={{ x: 10, rotate: -10 }}
+                transition={{ duration: 1, type: "spring" }}
               >
                 <div className="camera "></div>
                 <div className="display ">
-                  <div className="phone-1 artboard artboard-demo ">
+                  <div className="bg-black phone-3 artboard artboard-demo ">
                     <Image
-                      className="object-fill"
-                      src="https://res.cloudinary.com/dg84upfsp/image/upload/v1675561334/Screenshot_3_ykbr0a.jpg"
-                      width={1500}
-                      height={750}
-                      alt="photo"
+                      className="absolute object-cover top-10"
+                      src={project.imagesUrl.mobile[1].url}
+                      width={585}
+                      height={1266}
+                      alt={project.imagesUrl.mobile[1].title}
                     />
                   </div>
                 </div>
               </motion.div>
               <div className="self-center">
                 <motion.h4
-                  className="text-6xl font-medium rotate-2 md:text-8xl"
+                  className="text-6xl font-thin rotate-2 md:text-8xl"
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
                 >
                   Solution
@@ -293,10 +278,10 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
                 </motion.p>
               </div>
             </div>
-            <div className="grid grid-cols-2 mt-16 ">
+            <div className="grid grid-cols-1 mt-16 xs:grid-cols-2">
               <div className="self-center">
                 <motion.h4
-                  className="text-6xl font-medium rotate-2 md:text-8xl"
+                  className="text-6xl font-thin rotate-2 md:text-8xl"
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
                 >
                   Outcome
@@ -310,37 +295,52 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
               </div>
               <motion.div
                 className="self-center mockup-phone"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1, rotate: 10 }}
-                transition={{
-                  duration: 0.3,
-                  ease: [0, 0.71, 0.2, 1.01],
-                  scale: {
-                    type: "spring",
-                    damping: 5,
-                    stiffness: 100,
-                    restDelta: 0.001,
-                  },
-                }}
+                initial={{ x: 260 }}
+                whileInView={{ x: 10, rotate: 10 }}
+                transition={{ duration: 1, type: "spring" }}
               >
-                <div className="camera "></div>
+                <div className="camera " />
                 <div className="display ">
-                  <div className="phone-1 artboard artboard-demo ">
+                  <div className="relative bg-black phone-3 artboard artboard-demo">
                     <Image
-                      className="object-fill"
-                      src="https://res.cloudinary.com/dg84upfsp/image/upload/v1675561334/Screenshot_3_ykbr0a.jpg"
-                      width={1500}
-                      height={750}
-                      alt="photo"
+                      className="absolute object-cover top-10"
+                      src={project.imagesUrl.mobile[2].url}
+                      height={2266}
+                      width={1285}
+                      alt={project.imagesUrl.mobile[2].title}
                     />
                   </div>
                 </div>
               </motion.div>
             </div>
-          </>
+          </section>
+        ) : (
+          <section className="flex flex-wrap justify-between w-full mt-12">
+            {project.imagesUrl.mobile.map((image) => (
+              <motion.div
+                key={image.id}
+                className="self-center mockup-phone"
+                initial={{ y: 260 }}
+                whileInView={{ y: 10 }}
+                transition={{ duration: 1, type: "spring" }}
+              >
+                <div className="camera " />
+                <div className="display ">
+                  <div className="relative bg-black phone-4 artboard artboard-demo">
+                    <Image
+                      className="absolute object-cover top-10"
+                      src={image.url}
+                      width={1185}
+                      height={2566}
+                      alt={image.title}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </section>
         )}
       </motion.div>
     </Layout>
   );
 }
-

@@ -1,59 +1,71 @@
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import { LiIcon } from "./LiIcon";
 
 export default function Awards() {
-  const itemVariants = {
-    start: {
-      scale: 0.8,
-    },
-    end: {
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: "linear",
-      },
-    },
-  };
   return (
-    <motion.section className="mt-12  w-full  justify-center">
+    <section className="mt-12">
       <motion.h2
-        className=" mb-8 w-full text-center text-6xl font-bold md:text-8xl"
+        className="w-full mb-8 text-6xl font-bold text-center md:text-8xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
         Awards
       </motion.h2>
 
-      <div className="grid grid-cols-1 items-center justify-center md:grid-cols-2">
-        <div className="flex w-full justify-center">
-          <span className="w-80">
-            <AwardSVG />
-          </span>
-        </div>
-        <Award />
+      <div className="w-full">
+        <ul className="flex flex-col items-start justify-between w-full gap-8">
+          <AwardDetails
+            community="Gentleman Programming"
+            linkCommunity="https://www.linkedin.com/company/gentleman-programming/"
+            recognition="Effort Recognition Hackathon"
+            time="2022"
+            by="@Alan Buscaglia"
+          />
+        </ul>
       </div>
-    </motion.section>
+    </section>
   );
 }
+type AwardDetailsProps = {
+  community: string;
+  linkCommunity: string;
+  recognition: string;
+  by: string;
+  time: string;
+};
 
-const Award = () => {
+const AwardDetails = ({
+  community,
+  recognition,
+  time,
+  by,
+  linkCommunity,
+}: AwardDetailsProps) => {
+  const ref = useRef(null);
   return (
-    <div className=" text-center md:text-left">
-      <h3 className="text-3xl font-bold capitalize">Gentleman Programming</h3>
-      <p className=" font-medium capitalize">
-        Effort Recognition Hackathon
-      </p>
-      <p className=" font-medium capitalize">
-        2022 | Recognition by{" "}
+    <li
+      ref={ref}
+      className="mx-auto flex w-[60%] flex-col items-center justify-between first:mt-0 last:mb-0"
+    >
+      <LiIcon reference={ref} />
+      <div className="w-36">
+        <AwardSVG />
+      </div>
+      <h3 className="text-2xl font-bold capitalize">{community}</h3>
+      <p className="font-medium text-gray-500 capitalize">{recognition}</p>
+      <p className="font-medium capitalize ">
+        {time} | Recognition by{" "}
         <a
           className="font-bold text-pink-600"
-          href="https://www.linkedin.com/company/gentleman-programming/"
+          href={linkCommunity}
           target="_blank"
           rel="noreferrer"
         >
-          @Alan Buscaglia
-        </a>{" "}
+          {by}
+        </a>
       </p>
-    </div>
+    </li>
   );
 };
 

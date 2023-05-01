@@ -1,41 +1,31 @@
-import { useScroll, motion } from "framer-motion";
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { LiIcon } from "./LiIcon";
-import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
-import Balancer from "react-wrap-balancer";
 
 export const Experience = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center start"],
-  });
   return (
     <section className="mt-12">
       <motion.h2
-        className="mb-8 w-full text-center text-6xl font-bold md:text-8xl"
+        className="w-full mb-8 text-6xl font-bold text-center md:text-8xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
         Experience
       </motion.h2>
 
-      <div className="relative mx-auto w-[100%]" ref={ref}>
-        {/* <motion.div
-          className="absolute left-9 top-2 h-full w-[4px] origin-top bg-primary"
-          style={{ scaleY: scrollYProgress }}
-        /> */}
-        <ul className="ml-4 flex w-full flex-col items-start justify-between gap-8">
-          <Details
+      <div className="relative mx-auto w-[100%]">
+        <ul className="flex flex-col items-start justify-between w-full gap-8">
+          <ExperienceDetails
             position={"Software Engineer"}
             company={"Arqustik"}
-            companyLink={"www.arqustik.com"}
+            companyLink={"https://www.arqustik.com"}
             time={"2022-Present"}
             address={"Cali, Colombia"}
             work={
               "Designed and developed a full stack web application that allows clients to generate project quotes from a company product catalog.         Increased retail customer engagement by 90% and reduced customer 72 hours (about 3 days) to one minute quote generation time. Planning to expand app functionality to include “Client Management” and “Project Management” features using JavaScript technologies."
             }
           />
-          <Details
+          <ExperienceDetails
             position={"Independent Freelancer"}
             company={"Freelance"}
             companyLink={""}
@@ -51,7 +41,7 @@ export const Experience = () => {
   );
 };
 
-type DetailsProps = {
+type ExperienceDetailsProps = {
   position: string;
   company: string;
   companyLink: string;
@@ -60,19 +50,19 @@ type DetailsProps = {
   work: string;
 };
 
-const Details = ({
+const ExperienceDetails = ({
   position,
   company,
   companyLink,
   time,
   address,
   work,
-}: DetailsProps): JSX.Element => {
+}: ExperienceDetailsProps): JSX.Element => {
   const ref = useRef(null);
   return (
     <li
       ref={ref}
-      className="mx-auto flex w-[60%] flex-col items-center justify-between first:mt-0 last:mb-0"
+      className="mx-auto flex w-[70%] flex-col items-center justify-between first:mt-0 last:mb-0"
     >
       <LiIcon reference={ref} />
       <motion.div
@@ -85,13 +75,13 @@ const Details = ({
           <a
             target="_blank"
             href={companyLink}
-            className="text-red-500"
+            className="text-info"
             rel="noreferrer"
           >
             @{company}
           </a>
         </h3>
-        <span className="font-medium capitalize text-gray-500">
+        <span className="font-medium text-gray-500 capitalize">
           {time} | {address}
         </span>
         <p>{work}</p>

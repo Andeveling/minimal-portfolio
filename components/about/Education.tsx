@@ -1,38 +1,29 @@
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { LiIcon } from "./LiIcon";
 
 export const Education = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center start"],
-  });
   return (
     <section className="mt-12">
       <motion.h2
-        className=" mb-8 w-full text-center text-6xl font-bold md:text-8xl"
+        className="w-full mb-8 text-6xl font-bold text-center md:text-8xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
         Education
       </motion.h2>
 
-      <div className="w-full" ref={ref}>
-        {/* <motion.div
-          className="absolute left-9 top-2 h-full w-[4px] origin-top bg-primary"
-          style={{ scaleY: scrollYProgress }}
-        /> */}
-        <ul className="ml-4 flex w-full flex-col items-start justify-between gap-8">
-          <Details
+      <div className="w-full">
+        <ul className="flex flex-col items-start justify-between w-full gap-8">
+          <EducationDetails
             degree="Full Stack Developer"
-            universityLink={"www.soyhenry.com"}
+            universityLink={"https://www.soyhenry.com"}
             time={"2022-2022"}
             address={"Buenos Aires, Argentina"}
             degreeDescription="Major in PERN Stack (PostgreSQL | Express | React | Node) for development of SPA (Single Page Applications.)"
             university={"Henry BootCamp"}
           />
-          <Details
+          <EducationDetails
             degree="Frontend Developer"
             universityLink={"https://platzi.com/"}
             time={"2020-Present"}
@@ -40,7 +31,7 @@ export const Education = () => {
             degreeDescription="Where I start over and continue to continually learn and improve skills as a web developer to keep up with the latest frontend market trends."
             university={"Platzi"}
           />
-          <Details
+          <EducationDetails
             degree="Technical in Computer Science"
             universityLink={"https://www.uniminuto.edu/"}
             time={"2021-2021"}
@@ -54,7 +45,7 @@ export const Education = () => {
   );
 };
 
-type DetailsProps = {
+type EducationDetailsProps = {
   degree: string;
   university: string;
   universityLink: string;
@@ -63,14 +54,14 @@ type DetailsProps = {
   degreeDescription: string;
 };
 
-const Details = ({
+const EducationDetails = ({
   degree,
   university,
   universityLink,
   time,
   address,
   degreeDescription,
-}: DetailsProps): JSX.Element => {
+}: EducationDetailsProps): JSX.Element => {
   const ref = useRef(null);
   return (
     <li
@@ -88,13 +79,13 @@ const Details = ({
           <a
             target="_blank"
             href={universityLink}
-            className="text-red-500"
+            className="text-info"
             rel="noreferrer"
           >
             @{university}
           </a>
         </h3>
-        <span className="font-medium capitalize text-gray-500">
+        <span className="font-medium text-gray-500 capitalize">
           {time} | {address}
         </span>
         <p>{degreeDescription}</p>

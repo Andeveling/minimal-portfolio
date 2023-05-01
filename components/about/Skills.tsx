@@ -36,25 +36,32 @@ type SkillsSetT = {
 export const Skills = () => {
   return (
     <section>
-            <div className="md:flex-row flex-col my-4 mx-auto  flex w-full max-w-7xl flex-wrap  justify-between py-4 text-base">
-        <div className="flex flex-row items-center gap-2">
+      <motion.h2
+        className="w-full mt-8 text-6xl font-bold text-center md:text-8xl"
+        variants={FADE_DOWN_ANIMATION_VARIANTS}
+      >
+        Skills
+      </motion.h2>
+
+      <div className="grid w-full grid-cols-2 gap-4 py-4 mx-auto my-4 text-base max-w-7xl md:grid-cols-4 md:flex-row md:justify-between">
+        <div className="flex flex-col items-center justify-center max-w-xs gap-0 mx-auto md:flex-row md:gap-2">
           <PointsLevel level={3} />
-          <span className="text-gray-500">Confirmed</span>
+          <div className="text-gray-500">Confirmed</div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center justify-start max-w-xs gap-0 mx-auto md:flex-row md:gap-2">
           <PointsLevel level={2} />
           <span className="text-gray-500">Intermediate</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center justify-start max-w-xs gap-0 mx-auto md:flex-row md:gap-2">
           <PointsLevel level={1} />
-          <span className="text-gray-500">Novice</span>
+          <span className="text-gray-500 ">Notions</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center justify-start max-w-xs gap-0 mx-auto md:flex-row md:gap-2">
           <PointsLevel level={0} />
           <span className="text-gray-500">Interesting</span>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-5">
+      <div className="flex flex-wrap justify-center gap-5 first:mt-0 last:mb-0">
         <SkillsTypeMap skills={skillsSet.languages} title="Languages" />
         <SkillsTypeMap skills={skillsSet.frontend} title="Front-end" />
         <SkillsTypeMap
@@ -68,6 +75,7 @@ export const Skills = () => {
     </section>
   );
 };
+
 const SkillsTypeMap = ({
   title,
   skills,
@@ -76,33 +84,39 @@ const SkillsTypeMap = ({
   skills: SkillT[];
 }) => {
   return (
-    <motion.div className="container relative mt-10 min-h-[400px] w-96 border py-4 text-3xl shadow-sm"
-      initial={{ y: 160 }} whileInView={{ y: 10 }} transition={{ duration: 0.8, type: "spring" }}>
-      <center className="absolute -top-6  w-full text-center flex justify-center ">
-        <h3 className="bg-black text-white w-fit p-2 px-4">{title}</h3>
+    <motion.div
+      className="container relative mt-8 h-fit min-w-[375px] md:w-96 border py-4 text-3xl shadow-sm md:min-h-[400px]"
+      initial={{ y: 50 }}
+      whileInView={{ y: 10 }}
+      transition={{ duration: 0.8, type: "spring" }}
+    >
+      <center className="absolute flex justify-center w-full text-center -top-6 ">
+        <h3 className="p-2 px-4 text-white bg-black w-fit">{title}</h3>
       </center>
-      <motion.ul
-        className=" mt-10 flex flex-wrap justify-center gap-10"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {skills.map(({ name, svg, id, level }) => (
-          <Skill key={id} name={name} svg={svg} level={level} />
-        ))}
-      </motion.ul>
+      {
+        <motion.ul
+          className="flex flex-wrap justify-center gap-10 mt-10 "
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          {skills.map(({ id, name, svg, level }) => (
+            <Skill key={id} name={name} svg={svg} level={level} />
+          ))}
+        </motion.ul>
+      }
     </motion.div>
   );
 };
 const Skill = ({ name, svg, level }: Omit<SkillT, "id">) => {
   return (
     <motion.li
-      className="relative col-span-1 flex h-20 w-20 flex-col items-center justify-center"
+      className="relative flex flex-col items-center justify-center w-20 h-20 col-span-1"
       variants={item}
     >
       <PointsLevel level={level} />
       <div className="h-14 w-14">{svg}</div>
-      <p className="text-center text-lg font-medium">{name}</p>
+      <p className="text-lg font-medium text-center">{name}</p>
     </motion.li>
   );
 };
@@ -110,28 +124,28 @@ const Skill = ({ name, svg, level }: Omit<SkillT, "id">) => {
 const PointsLevel = ({ level }: { level: LevelSkill }) => {
   const levels = {
     0: (
-      <div className="mb-1 flex space-x-1">
-        <span className={`h-3 w-3 bg-gray-300 rounded-full`} />
-        <span className={`h-3 w-3 bg-gray-300 rounded-full`} />
-        <span className={`h-3 w-3 bg-gray-300 rounded-full`} />
+      <div className="flex mb-1 space-x-1">
+        <span className={`h-3 w-3 rounded-full bg-gray-300`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-300`} />
+        <span className={`h-3 w-3 rounded-full bg-gray-300`} />
       </div>
     ),
     1: (
-      <div className="mb-1 flex space-x-1">
+      <div className="flex mb-1 space-x-1">
         <span className={`h-3 w-3 rounded-full bg-gray-700`} />
         <span className={`h-3 w-3 rounded-full bg-gray-300`} />
         <span className={`h-3 w-3 rounded-full bg-gray-300`} />
       </div>
     ),
     2: (
-      <div className="mb-1 flex space-x-1">
+      <div className="flex mb-1 space-x-1">
         <span className={`h-3 w-3 rounded-full bg-gray-700`} />
         <span className={`h-3 w-3 rounded-full bg-gray-700`} />
         <span className={`h-3 w-3 rounded-full bg-gray-300`} />
       </div>
     ),
     3: (
-      <div className="mb-1 flex space-x-1">
+      <div className="flex mb-1 space-x-1">
         <span className={`h-3 w-3 rounded-full bg-gray-700`} />
         <span className={`h-3 w-3 rounded-full bg-gray-700`} />
         <span className={`h-3 w-3 rounded-full bg-gray-700`} />
@@ -203,11 +217,11 @@ const skillsSet: SkillsSetT = {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             <path d="M9,3 L9,21 L15,21 L15,3 L9,3 Z M8,3 L3.5,3 C2.67157288,3 2,3.67157288 2,4.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 L8,21 L8,3 Z M16,3 L16,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,4.5 C22,3.67157288 21.3284271,3 20.5,3 L16,3 Z M1,4.5 C1,3.11928813 2.11928813,2 3.5,2 L20.5,2 C21.8807119,2 23,3.11928813 23,4.5 L23,19.5 C23,20.8807119 21.8807119,22 20.5,22 L3.5,22 C2.11928813,22 1,20.8807119 1,19.5 L1,4.5 Z M4,6 L6,6 C6.55228475,6 7,6.44771525 7,7 L7,8 C7,8.55228475 6.55228475,9 6,9 L4,9 C3.44771525,9 3,8.55228475 3,8 L3,7 C3,6.44771525 3.44771525,6 4,6 Z M4,10 L6,10 C6.55228475,10 7,10.4477153 7,11 L7,12 C7,12.5522847 6.55228475,13 6,13 L4,13 C3.44771525,13 3,12.5522847 3,12 L3,11 C3,10.4477153 3.44771525,10 4,10 Z M11,6 L13,6 C13.5522847,6 14,6.44771525 14,7 L14,8 C14,8.55228475 13.5522847,9 13,9 L11,9 C10.4477153,9 10,8.55228475 10,8 L10,7 C10,6.44771525 10.4477153,6 11,6 Z M18,6 L20,6 C20.5522847,6 21,6.44771525 21,7 L21,8 C21,8.55228475 20.5522847,9 20,9 L18,9 C17.4477153,9 17,8.55228475 17,8 L17,7 C17,6.44771525 17.4477153,6 18,6 Z M18,10 L20,10 C20.5522847,10 21,10.4477153 21,11 L21,12 C21,12.5522847 20.5522847,13 20,13 L18,13 C17.4477153,13 17,12.5522847 17,12 L17,11 C17,10.4477153 17.4477153,10 18,10 Z M18,14 L20,14 C20.5522847,14 21,14.4477153 21,15 L21,16 C21,16.5522847 20.5522847,17 20,17 L18,17 C17.4477153,17 17,16.5522847 17,16 L17,15 C17,14.4477153 17.4477153,14 18,14 Z M4,7 L4,8 L6,8 L6,7 L4,7 Z M4,11 L4,12 L6,12 L6,11 L4,11 Z M11,7 L11,8 L13,8 L13,7 L11,7 Z M18,7 L18,8 L20,8 L20,7 L18,7 Z M18,11 L18,12 L20,12 L20,11 L18,11 Z M18,15 L18,16 L20,16 L20,15 L18,15 Z M3.5,5 C3.22385763,5 3,4.77614237 3,4.5 C3,4.22385763 3.22385763,4 3.5,4 L6.5,4 C6.77614237,4 7,4.22385763 7,4.5 C7,4.77614237 6.77614237,5 6.5,5 L3.5,5 Z M10.5,5 C10.2238576,5 10,4.77614237 10,4.5 C10,4.22385763 10.2238576,4 10.5,4 L13.5,4 C13.7761424,4 14,4.22385763 14,4.5 C14,4.77614237 13.7761424,5 13.5,5 L10.5,5 Z M17.5,5 C17.2238576,5 17,4.77614237 17,4.5 C17,4.22385763 17.2238576,4 17.5,4 L20.5,4 C20.7761424,4 21,4.22385763 21,4.5 C21,4.77614237 20.7761424,5 20.5,5 L17.5,5 Z"></path>
@@ -257,6 +271,30 @@ const skillsSet: SkillsSetT = {
         </svg>
       ),
       level: 3,
+    },
+    {
+      id: "6",
+      name: "Github",
+      svg: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M20.9992 5.95846C21.0087 6.565 20.9333 7.32649 20.8658 7.8807C20.8395 8.09686 20.8037 8.27676 20.7653 8.42453C21.6227 10.01 22 11.9174 22 14C22 16.4684 20.8127 18.501 18.9638 19.8871C17.1319 21.2605 14.6606 22 12 22C9.33939 22 6.86809 21.2605 5.0362 19.8871C3.18727 18.501 2 16.4684 2 14C2 11.9174 2.37732 10.01 3.23472 8.42452C3.19631 8.27676 3.16055 8.09685 3.13422 7.8807C3.06673 7.32649 2.99133 6.565 3.00081 5.95846C3.01149 5.27506 3.10082 4.5917 3.19988 3.91379C3.24569 3.60028 3.31843 3.30547 3.65883 3.11917C4.00655 2.92886 4.37274 2.99981 4.73398 3.1021C5.95247 3.44713 7.09487 3.93108 8.16803 4.51287C9.2995 4.17287 10.5783 4 12 4C13.4217 4 14.7005 4.17287 15.832 4.51287C16.9051 3.93108 18.0475 3.44713 19.266 3.1021C19.6273 2.99981 19.9935 2.92886 20.3412 3.11917C20.6816 3.30547 20.7543 3.60028 20.8001 3.91379C20.8992 4.5917 20.9885 5.27506 20.9992 5.95846ZM20 14C20 12.3128 19.6122 10 17.5 10C16.5478 10 15.6474 10.2502 14.7474 10.5004C13.8482 10.7502 12.9495 11 12 11C11.0505 11 10.1518 10.7502 9.25263 10.5004C8.35261 10.2502 7.45216 10 6.5 10C4.39379 10 4 12.3197 4 14C4 15.7636 4.82745 17.231 6.23588 18.2869C7.66135 19.3556 9.69005 20 12 20C14.3099 20 16.3386 19.3555 17.7641 18.2869C19.1726 17.231 20 15.7636 20 14ZM10 14.5C10 15.8807 9.32843 17 8.5 17C7.67157 17 7 15.8807 7 14.5C7 13.1193 7.67157 12 8.5 12C9.32843 12 10 13.1193 10 14.5ZM15.5 17C16.3284 17 17 15.8807 17 14.5C17 13.1193 16.3284 12 15.5 12C14.6716 12 14 13.1193 14 14.5C14 15.8807 14.6716 17 15.5 17Z"
+              fill="#000000"
+            />{" "}
+          </g>
+        </svg>
+      ),
+      level: 2,
     },
   ],
   languages: [
@@ -389,7 +427,7 @@ const skillsSet: SkillsSetT = {
           </g>
         </svg>
       ),
-      level: 3,
+      level: 2,
     },
     {
       id: "5",
@@ -441,7 +479,7 @@ const skillsSet: SkillsSetT = {
   ],
   frontend: [
     {
-      id: "F05",
+      id: "1",
       name: "React",
       svg: (
         <svg
@@ -465,7 +503,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "F06",
+      id: "2",
       name: "Redux",
       svg: (
         <svg
@@ -489,7 +527,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "F07",
+      id: "3",
       name: "Next",
       svg: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -517,7 +555,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "F08",
+      id: "4",
       name: "Flutter",
       svg: (
         <svg
@@ -542,7 +580,7 @@ const skillsSet: SkillsSetT = {
       level: 1,
     },
     {
-      id: "UI01",
+      id: "5",
       name: "TailwindCSS",
       svg: (
         <svg
@@ -569,7 +607,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "UI02",
+      id: "6",
       name: "MUI",
       svg: (
         <svg
@@ -592,7 +630,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "F10",
+      id: "7",
       name: "Astro",
       svg: (
         <svg
@@ -618,7 +656,7 @@ const skillsSet: SkillsSetT = {
       level: 2,
     },
     {
-      id: "F11",
+      id: "F8",
       name: "Framer M",
       svg: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -644,7 +682,7 @@ const skillsSet: SkillsSetT = {
   ],
   backend: [
     {
-      id: "B01",
+      id: "1",
       name: "Node",
       svg: (
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -669,7 +707,7 @@ const skillsSet: SkillsSetT = {
       level: 2,
     },
     {
-      id: "B02",
+      id: "2",
       name: "Express",
       svg: (
         <svg
@@ -692,7 +730,7 @@ const skillsSet: SkillsSetT = {
       level: 2,
     },
     {
-      id: "B03",
+      id: "3",
       name: "Prisma",
       svg: (
         <svg
@@ -723,7 +761,7 @@ const skillsSet: SkillsSetT = {
       level: 1,
     },
     {
-      id: "B04",
+      id: "4",
       name: "Strapi",
       svg: (
         <svg
@@ -759,7 +797,7 @@ const skillsSet: SkillsSetT = {
       level: 2,
     },
     {
-      id: "B06",
+      id: "5",
       name: "Firebase",
       svg: (
         <svg
@@ -784,7 +822,7 @@ const skillsSet: SkillsSetT = {
     },
 
     {
-      id: "DB01",
+      id: "6",
       name: "PosgreSQL",
       svg: (
         <svg
@@ -808,7 +846,7 @@ const skillsSet: SkillsSetT = {
       level: 2,
     },
     {
-      id: "DB02",
+      id: "7",
       name: "MongoDB",
       svg: (
         <svg
@@ -834,7 +872,7 @@ const skillsSet: SkillsSetT = {
   ],
   tools: [
     {
-      id: "TOOLS01",
+      id: "1",
       name: "npm",
       svg: (
         <svg
@@ -858,7 +896,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS02",
+      id: "2",
       name: "yarn",
       svg: (
         <svg
@@ -880,7 +918,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS03",
+      id: "3",
       name: "pnpm",
       svg: (
         <svg
@@ -916,7 +954,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS04",
+      id: "4",
       name: "Git",
       svg: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -939,7 +977,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS05",
+      id: "5",
       name: "VSCode",
       svg: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -972,7 +1010,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS06",
+      id: "6",
       name: "Windows",
       svg: (
         <svg
@@ -1017,7 +1055,7 @@ const skillsSet: SkillsSetT = {
       level: 3,
     },
     {
-      id: "TOOLS07",
+      id: "7",
       name: "Ubuntu",
       svg: (
         <svg
@@ -1140,7 +1178,7 @@ const skillsSet: SkillsSetT = {
     },
     {
       id: "4",
-      name: "React Native",
+      name: "Native",
       svg: (
         <svg
           viewBox="0 0 24 24"

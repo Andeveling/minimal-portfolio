@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["Platzi"]
+  "cSpell.words": [
+    "Platzi"
+  ],
+  "vue.features.codeActions.enable": false
 }

@@ -1,13 +1,14 @@
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import "@/styles/globals.css";
 import { Montserrat } from "@next/font/google";
 import localFont from "@next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
+import { AnimatePresence } from "framer-motion";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Provider as RWBProvider } from "react-wrap-balancer";
-import { AnimatePresence, motion } from "framer-motion";
 
 const sfPro = localFont({
   src: "../styles/SF-Pro-Display-Medium.otf",
@@ -30,6 +31,7 @@ export default function MyApp({
           <AnimatePresence mode="wait">
             <Component {...pageProps} />
           </AnimatePresence>
+          <ScrollToTop />
         </div>
       </RWBProvider>
       <Analytics />

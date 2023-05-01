@@ -1,25 +1,23 @@
 import { ProjectList } from "@/components/Projects/ProjectList";
 import Layout from "@/components/layout";
-import fs from 'fs'
+import fs from "fs";
 
 import {
   FADE_DOWN_ANIMATION_VARIANTS,
   FADE_UP_ANIMATION_VARIANTS,
+  NAME,
 } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { ProjectT } from "models/Project.types";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import path from "path";
 import Balancer from "react-wrap-balancer";
-import useSWR from "swr";
-
 
 const meta = {
-  title: "Projects | Andres Parra",
+  title: `Projects | ${NAME}`,
   description:
-    'My latest web projects and see how we can help bring your ideas to life.',
+    "My latest web projects and see how we can help bring your ideas to life.",
 };
-
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const filePath = path.join(process.cwd(), "json");
@@ -32,14 +30,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-
-
-
-
-
 export default function Projects({ projects }: { projects: ProjectT[] }) {
   return (
-    <Layout meta={meta}>
+    <Layout meta={meta} footer>
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -53,7 +46,7 @@ export default function Projects({ projects }: { projects: ProjectT[] }) {
             },
           },
         }}
-        className="container h-full pt-8"
+        className="container h-full pt-32"
       >
         <motion.h1
           className="w-full text-center font-display text-6xl font-extrabold  tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[5rem]"
@@ -63,15 +56,14 @@ export default function Projects({ projects }: { projects: ProjectT[] }) {
         </motion.h1>
         <motion.p
           variants={FADE_UP_ANIMATION_VARIANTS}
-          className="mt-6 text-xl text-center text-primary md:text-2xl"
+          className="px-4 mt-6 text-xl text-center text-primary md:text-2xl"
         >
-          My latest web projects and see how we can help bring your ideas to
-          life.
+          These are some of my latest projects where I demonstrate some of my
+          skills, what I dedicate my time to and the improvement I have had in
+          the last two years.
         </motion.p>
-        {/* <Works /> */}
       </motion.div>
-      <ProjectList projects={projects} />
-      {/* <Circle /> */}
+        <ProjectList projects={projects} />
     </Layout>
   );
 }
