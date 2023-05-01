@@ -45,7 +45,7 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
   return (
     <Layout key={project.id} meta={meta} footer>
       <motion.div
-        className="container flex flex-col items-center justify-center w-full h-full px-5 mt-12 text-xl md:text-2xl xl:py-32 xl:px-10"
+        className="container flex flex-col items-center justify-center w-full h-full px-5 py-12 mt-12 text-xl md:text-2xl xl:py-32 xl:px-10"
         initial="hidden"
         whileInView="show"
         animate="show"
