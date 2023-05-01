@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { MobileMenu } from "../sidebar/MobileMenu";
 import AnimateLogo from "./animateLogo";
+import { SocialMedia } from "../shared/social-media";
 
 const MotionLink = motion(Link);
 
@@ -42,14 +43,9 @@ const CustomLink = ({
   );
 };
 
-const buttonVariants = {
-  hover: {
-    translateY: -5,
-  },
-};
+
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const scrolled = useScroll(50);
   const { isTablet, isMobile, isDesktop } = useWindowSize();
   
@@ -76,27 +72,7 @@ export const Navbar = () => {
               </Link>
             </strong>
           </nav>
-
-          <nav>
-            <motion.ul
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
-              className="flex items-center justify-center space-x-5"
-            >
-              {SOCIAL_LINKS.map((link, i) => (
-                <motion.li
-                  key={link.id}
-                  className="h-10 w-14 rounded-full border border-black bg-gray-900 p-1.5 px-4 text-sm text-white transition-all hover:bg-black"
-                  whileTap={{ scale: 0.9 }}
-                  whileHover="hover"
-                  variants={buttonVariants}
-                >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">
-                    {link.icon}
-                  </a>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </nav>
+<SocialMedia/>
         </div>
       )}
     </header>

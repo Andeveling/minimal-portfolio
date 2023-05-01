@@ -36,12 +36,12 @@ type SkillsSetT = {
 export const Skills = () => {
   return (
     <section>
-      <motion.h2
+      {/* <motion.h2
         className="w-full mt-8 text-6xl font-bold text-center md:text-8xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
         Skills
-      </motion.h2>
+      </motion.h2> */}
 
       <div className="grid w-full grid-cols-2 gap-4 py-4 mx-auto my-4 text-base max-w-7xl md:grid-cols-4 md:flex-row md:justify-between">
         <div className="flex flex-col items-center justify-center max-w-xs gap-0 mx-auto md:flex-row md:gap-2">

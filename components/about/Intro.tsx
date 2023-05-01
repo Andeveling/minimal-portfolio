@@ -2,6 +2,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import { motion } from "framer-motion";
 import Balancer from "react-wrap-balancer";
 import Image from "next/image";
+import Typewriter from "typewriter-effect";
 
 export default function Intro() {
   return (
@@ -28,6 +29,24 @@ export default function Intro() {
             new challenges to grow and improve my skills as a developer.
           </Balancer>
         </motion.p>
+        {/* <div className="my-10 text-3xl text-center">
+          <Typewriter
+            options={{
+              strings: [
+                "Web Developer",
+                "Web Developer",
+                "React Developer",
+                "Next Developer",
+                "Arya's father",
+              ],
+              autoStart: true,
+              loop: true,
+              deleteSpeed: 50,
+              delay: 150,
+            }}
+          />
+        </div> */}
+     
       </motion.section>
     </>
   );

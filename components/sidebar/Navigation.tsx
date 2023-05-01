@@ -15,7 +15,8 @@ const variants = {
 };
 
 export const Navigation = () => (
-  <motion.ul variants={variants} className="absolute w-56 p-6 mt-12">
+  <motion.ul variants={variants} className="absolute flex flex-col w-56 gap-4 p-6 mt-12">
+    
     {PublicRoutes.map((link) => (
       <MenuItem key={link.id} href={link.route} title={link.title} />
     ))}

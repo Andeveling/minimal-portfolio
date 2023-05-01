@@ -3,14 +3,14 @@ import { useRouter } from "next/router";
 
 const variants = {
   open: {
-    y: 0,
+    x: 50,
     opacity: 1,
     transition: {
       y: { stiffness: 1000, velocity: -100 },
     },
   },
   closed: {
-    y: 50,
+    x: 0,
     opacity: 0,
     transition: {
       y: { stiffness: 1000 },
@@ -19,22 +19,19 @@ const variants = {
 };
 
 type MenuItemProps = {
-  
   href: string;
   title: string;
 };
 
-export const MenuItem = ({  href, title }: MenuItemProps): JSX.Element => {
+export const MenuItem = ({ href, title }: MenuItemProps): JSX.Element => {
   return (
     <motion.li
       variants={variants}
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1, translateX: 30 }}
       whileTap={{ scale: 0.95 }}
-      className="flex items-center mb-5 cursor-pointer"
+      className="flex items-center w-full mb-5 text-4xl font-bold text-white cursor-pointer"
     >
       <CustomMobileLink title={title} href={href} />
-
-
     </motion.li>
   );
 };
@@ -55,10 +52,7 @@ const CustomMobileLink = ({
     router.push(href);
   };
   return (
-    <button
-      onClick={handleClick}
-      className={`${className} group relative text-white`}
-    >
+    <button onClick={handleClick} className={`${className}`}>
       {title}
     </button>
   );

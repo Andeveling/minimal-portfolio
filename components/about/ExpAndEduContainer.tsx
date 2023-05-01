@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { Education } from "./Education";
 import { Experience } from "./Experience";
 import { motion, useScroll } from "framer-motion";
-import { Award } from "lucide-react";
 import Awards from "./Awards";
 
 export const ExpAndEduContainer = () => {

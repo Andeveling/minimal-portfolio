@@ -2,8 +2,47 @@ import { FADE_UP_ANIMATION_VARIANTS, MAIL_TO } from "@/lib/constants";
 import { motion } from "framer-motion";
 
 export const HireMe = () => {
+  const text = "ANDRES PARRA - CREATIVE WEB DEVELOPER - ";
   return (
     <motion.div
+      variants={FADE_UP_ANIMATION_VARIANTS}
+      className="fixed bottom-auto left-auto flex items-center justify-center overflow-hidden top-1 right-1 md:top-auto md:right-auto md:left-4 md:bottom-4"
+    >
+      <div className="relative flex items-center justify-center bg-transparent rounded-full h-36 w-36">
+        <div className="absolute flex items-center justify-center w-20 h-20 text-white bg-black rounded-full">
+          <a
+            href={MAIL_TO}
+            className="absolute inset-0 z-50 flex items-center justify-center w-full h-full text-sm"
+          >
+            HIRE ME
+          </a>
+        </div>
+        <div
+          id="text-andres"
+          className="absolute w-full h-full animate-spin-slow "
+        >
+          <p>
+            {text.split("").map((letter, i) => (
+              <span
+                key={i}
+                className={`absolute left-1/2 text-sm font-semibold`}
+                style={{
+                  transform: `rotate(${i * 9.4}deg)`,
+                  transformOrigin: "0 72px",
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+/* 
+<motion.div
       className="fixed bottom-auto left-auto flex items-center justify-center overflow-hidden top-1 right-1 md:top-auto md:right-auto md:left-4 md:bottom-4"
       variants={FADE_UP_ANIMATION_VARIANTS}
     >
@@ -17,5 +56,4 @@ export const HireMe = () => {
         </a>
       </div>
     </motion.div>
-  );
-};
+*/

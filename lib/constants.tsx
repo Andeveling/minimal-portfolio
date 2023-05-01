@@ -1,5 +1,5 @@
-import { LinkedIn, Twitter } from "@/components/shared/icons";
-import Github2 from "@/components/shared/icons/github-2";
+
+import {Linkedin, Github, Twitter} from 'lucide-react'
 
 export const FADE_IN_ANIMATION_SETTINGS = {
   initial: { opacity: 0 },
@@ -22,6 +22,8 @@ export const DEPLOY_URL =
   "https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsteven-tey%2Fprecedent&project-name=precedent&repository-name=precedent&demo-title=Precedent&demo-description=An%20opinionated%20collection%20of%20components%2C%20hooks%2C%20and%20utilities%20for%20your%20Next%20project.&demo-url=https%3A%2F%2Fprecedent.dev&demo-image=https%3A%2F%2Fprecedent.dev%2Fapi%2Fog&env=DATABASE_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,NEXTAUTH_SECRET&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fsteven-tey%2Fprecedent%2Fblob%2Fmain%2F.env.example";
 
 export const MAIL_TO = "mailto:andeveling@gmail.com";
+export const CV_LINK =
+  "https://docs.google.com/document/d/1ktSOTVSif0Yc4P3n1LuTwscDsoVILjHu0ZrM1vkd_58/edit?usp=sharing";
 
 export const PublicRoutes = [
   {
@@ -47,13 +49,13 @@ export const SOCIAL_LINKS = [
     id: "1",
     title: "LinkedIn",
     href: "https://www.linkedin.com/in/andrespsanchez/",
-    icon: <LinkedIn />,
+    icon: <Linkedin />,
   },
   {
     id: "2",
     title: "Github",
     href: "https://github.com/Andeveling",
-    icon: <Github2 />,
+    icon: <Github />,
   },
   {
     id: "3",

@@ -216,7 +216,7 @@
       ]
     },
     "tech": ["React", "Typescript", "Redux-Toolkit", "NextUI", "RTK Query"],
-    "features": ["Character listing", "Character Details", "Filters", "Search"],
+    "features": ["Char listing", "Details", "Filters", "Search"],
     "repository": "https://github.com/Andeveling/myrickandmortyapp",
     "deploy": "https://myrickandmortyandeveling.netlify.app/",
     "role": "Design and development",

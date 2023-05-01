@@ -44,9 +44,8 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
 
   return (
     <Layout key={project.id} meta={meta} footer>
-      
       <motion.div
-        className="container flex flex-col items-center justify-center w-full h-full px-5 mt-12 text-xl md:text-2xl xl:px-0"
+        className="container flex flex-col items-center justify-center w-full h-full px-5 mt-12 text-xl md:text-2xl xl:py-32 xl:px-10"
         initial="hidden"
         whileInView="show"
         animate="show"
@@ -153,7 +152,7 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
         {/* Client data */}
         {project.isAWork && project.workData ? (
           <motion.div
-            className="grid justify-center w-full grid-cols-2 gap-8 py-8 mt-10 sm:grid-cols-4 group"
+            className="grid justify-center w-full grid-cols-2 gap-8 py-8 mt-10 group sm:grid-cols-4"
             variants={FADE_UP_ANIMATION_VARIANTS}
           >
             <div>
@@ -164,7 +163,7 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
 
             <div>
               <p className="mb-2 font-medium border-b-4 w-fit">Roles</p>
-              {project.workData.roles.map((item,i) => (
+              {project.workData.roles.map((item, i) => (
                 <p key={i}>{item}</p>
               ))}
             </div>
@@ -204,8 +203,9 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
         {/* Features is a Work */}
 
         {project.isAWork ? (
-          <section className="mt-10">
-            <div className="grid grid-cols-1 mt-16 xs:grid-cols-2">
+          <section className="my-10">
+            <div className="my-6 divider" />
+            <div className="grid grid-cols-1 mt-16 md:grid-cols-2">
               <div className="self-center">
                 <motion.h4
                   className="text-6xl font-thin rotate-2 md:text-8xl"
@@ -220,50 +220,39 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
                   {project.workData.problem}
                 </motion.p>
               </div>
-            
-               <motion.div
-                className="self-center mt-10 md:mt-2 mockup-phone"
-                initial={{ x: 260 }}
-                whileInView={{ x: 10, rotate: 10 }}
-                transition={{ duration: 1, type: "spring" }}
-              >
+
+              <div className="self-center max-w-xs mt-10 mockup-phone md:mt-2">
                 <div className="camera " />
                 <div className="display ">
-                  <div className="relative bg-black phone-3 artboard artboard-demo">
+                  <div className="relative bg-black phone-1 artboard artboard-demo">
                     <Image
-                      className="absolute object-cover top-10"
+                      className="absolute left-0 object-fill mt-10"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       src={project.imagesUrl.mobile[0].url}
-                      width={1185}
-                      height={2566}
                       alt={project.imagesUrl.mobile[0].title}
                     />
                   </div>
                 </div>
-              </motion.div>
-             
+              </div>
             </div>
-
-            <div className="grid grid-cols-1 mt-16 xs:grid-cols-2">
-              <motion.div
-                className="self-center mockup-phone"
-                initial={{ x: -260 }}
-                whileInView={{ x: 10, rotate: -10 }}
-                transition={{ duration: 1, type: "spring" }}
-              >
-                <div className="camera "></div>
+            <div className="my-6 divider" />
+            <div className="grid grid-cols-1 mt-16 md:grid-cols-2">
+              <div className="self-center order-2 max-w-xs mt-10 mockup-phone sm:order-1 md:mt-2">
+                <div className="camera " />
                 <div className="display ">
-                  <div className="bg-black phone-3 artboard artboard-demo ">
+                  <div className="relative bg-black phone-1 artboard artboard-demo">
                     <Image
-                      className="absolute object-cover top-10"
+                      className="absolute left-0 object-fill mt-10"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       src={project.imagesUrl.mobile[1].url}
-                      width={585}
-                      height={1266}
                       alt={project.imagesUrl.mobile[1].title}
                     />
                   </div>
                 </div>
-              </motion.div>
-              <div className="self-center">
+              </div>
+              <div className="self-center order-1 xs:order-2">
                 <motion.h4
                   className="text-6xl font-thin rotate-2 md:text-8xl"
                   variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -278,60 +267,58 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
                 </motion.p>
               </div>
             </div>
-            <div className="grid grid-cols-1 mt-16 xs:grid-cols-2">
+            <div className="my-6 divider" />
+            <div className="grid grid-cols-1 mt-16 grid-flow-dense md:grid-cols-2">
               <div className="self-center">
-                <motion.h4
-                  className="text-6xl font-thin rotate-2 md:text-8xl"
-                  variants={FADE_DOWN_ANIMATION_VARIANTS}
-                >
+                <h4 className="text-6xl font-thin rotate-2 md:text-8xl">
                   Outcome
-                </motion.h4>
-                <motion.p
-                  variants={FADE_DOWN_ANIMATION_VARIANTS}
-                  className="mt-6 text-xl md:text-2xl"
-                >
+                </h4>
+                <p className="mt-6 text-xl md:text-2xl">
                   {project.workData.outcome}
-                </motion.p>
+                </p>
               </div>
-              <motion.div
-                className="self-center mockup-phone"
-                initial={{ x: 260 }}
-                whileInView={{ x: 10, rotate: 10 }}
-                transition={{ duration: 1, type: "spring" }}
-              >
+              <div className="self-center max-w-xs mt-10 mockup-phone md:mt-2">
                 <div className="camera " />
                 <div className="display ">
-                  <div className="relative bg-black phone-3 artboard artboard-demo">
+                  <div className="relative bg-black phone-1 artboard artboard-demo">
                     <Image
-                      className="absolute object-cover top-10"
+                      className="absolute left-0 object-fill mt-10"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       src={project.imagesUrl.mobile[2].url}
-                      height={2266}
-                      width={1285}
                       alt={project.imagesUrl.mobile[2].title}
                     />
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
         ) : (
-          <section className="flex flex-wrap justify-between w-full mt-12">
+          <></>
+        )}
+      </motion.div>
+    </Layout>
+  );
+}
+
+/* 
+<section className="flex flex-wrap justify-between w-full mt-12">
             {project.imagesUrl.mobile.map((image) => (
               <motion.div
                 key={image.id}
-                className="self-center mockup-phone"
+                className="mockup-phone max-h-[600px] max-w-xs self-center"
                 initial={{ y: 260 }}
                 whileInView={{ y: 10 }}
                 transition={{ duration: 1, type: "spring" }}
               >
-                <div className="camera " />
-                <div className="display ">
+                <div className="camera" />
+                <div className="display">
                   <div className="relative bg-black phone-4 artboard artboard-demo">
                     <Image
-                      className="absolute object-cover top-10"
+                      className="absolute top-10"
                       src={image.url}
-                      width={1185}
-                      height={2566}
+                      fill
+                      style={{objectFit:"contain"}}
                       alt={image.title}
                     />
                   </div>
@@ -339,8 +326,4 @@ export default function ProjectPage({ project }: { project: ProjectT }) {
               </motion.div>
             ))}
           </section>
-        )}
-      </motion.div>
-    </Layout>
-  );
-}
+*/

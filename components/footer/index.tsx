@@ -1,5 +1,6 @@
 import { NAME, SOCIAL_LINKS } from "@/lib/constants";
 import Link from "next/link";
+import { SocialMedia } from "../shared/social-media";
 
 export const Footer = () => {
   return (
@@ -8,24 +9,13 @@ export const Footer = () => {
         <span className="text-center">
           {new Date().getFullYear()} &copy; All Rights Reserved.
         </span>
-
         <div className="flex justify-center col-span-3 text-center xl:col-span-1">
           Build with
           <span className="text-pink-500 text-md ">&nbsp;&#9825;</span>
           &nbsp;by {NAME}
         </div>
-
-        <div className="grid max-w-sm grid-cols-3 col-span-3 gap-4 justify-self-center xl:col-span-1 xl:justify-self-end">
-          {SOCIAL_LINKS.map((link) => (
-            <Link
-              key={link.id}
-              href={link.href}
-              target="_blank"
-              className="hover:text-info"
-            >
-              {link.title}
-            </Link>
-          ))}
+        <div className="mt-4 xl:mt-0">
+          <SocialMedia />
         </div>
       </div>
     </footer>
