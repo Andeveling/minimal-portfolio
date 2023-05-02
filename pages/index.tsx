@@ -62,6 +62,8 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
             className="relative mt-4 btn"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.1 }}
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             Download CV
