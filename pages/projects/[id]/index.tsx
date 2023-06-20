@@ -1,5 +1,4 @@
 import Layout, { MetaData } from "@/components/layout";
-import { BackButton } from "@/components/shared/backButton";
 import {
   FADE_DOWN_ANIMATION_VARIANTS,
   FADE_UP_ANIMATION_VARIANTS,
