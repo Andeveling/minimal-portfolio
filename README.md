@@ -21,7 +21,7 @@ I am using, Precedent, this is an opinionated collection of components, hooks, a
 ### UI
 
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid UI development
-- [Radix](https://www.radix-ui.com/) – Primitives like modal, popover, etc. to build a stellar user experience
+- [DaisyUI](https://daisyui.com/) – Beatiful UI librarie based on Tailwind CSS
 - [Framer Motion](https://framer.com/motion) – Motion library for React to animate components with ease
 - [Lucide](https://lucide.dev/) – Beautifully simple, pixel-perfect icons
 - [`@next/font`](https://nextjs.org/docs/basic-features/font-optimization) – Optimize custom fonts and remove external network requests for improved performance
@@ -49,5 +49,4 @@ I am using, Precedent, this is an opinionated collection of components, hooks, a
 - [Vercel Analytics](https://vercel.com/analytics) – Track unique visitors, pageviews, and more in a privacy-friendly way
 
 ## Author Precedent
-
 - Steven Tey ([@steventey](https://twitter.com/steventey))
