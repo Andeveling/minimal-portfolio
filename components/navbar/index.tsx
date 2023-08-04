@@ -68,7 +68,7 @@ export const Navbar = () => {
           <nav className="flex items-center justify-center">
             <strong className="text-primary ">
               <Link href="/" className="text-2xl">
-                <AnimateLogo />
+                Web Developer{/* <AnimateLogo /> */}
               </Link>
             </strong>
           </nav>

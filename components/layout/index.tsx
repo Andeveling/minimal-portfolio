@@ -45,7 +45,7 @@ export default function Layout({ meta, footer, children }: LayoutProps) {
     translate(${pointX}px, ${pointY}px)
   `;
 
-  const stickyTailX = useMotionValue(200);
+  const stickyTailX = useMotionValue(50);
   const stickyTailY = useMotionValue(0);
 
   const tailX = useSpring(
